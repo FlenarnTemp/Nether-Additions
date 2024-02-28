@@ -1,0 +1,45 @@
+{
+	"schemaVersion": 1,
+	"id": "nether_additions",
+	"version": "${version}",
+	"name": "Nether Additions",
+	"description": "This is an example description! Tell everyone what your mod is about!",
+	"authors": [
+		"Me!"
+	],
+	"contact": {
+		"homepage": "https://fabricmc.net/",
+		"sources": "https://github.com/FabricMC/fabric-example-mod"
+	},
+	"license": "CC0-1.0",
+	"icon": "assets/nether_additions/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+          "org.flenarn.NetherAdditions"
+		],
+		"client": [
+			"org.flenarn.NetherAdditionsClient"
+		],
+		"fabric-datagen": [
+			"org.flenarn.NetherAdditionsDataGenerator"
+		]
+	},
+	"mixins": [
+		"nether_additions.mixins.json",
+		{
+			"config": "nether_additions.client.mixins.json",
+			"environment": "client"
+		}
+	],
+	"depends": {
+		"fabricloader": ">=0.15.7",
+		"minecraft": "~1.20.4",
+		"java": ">=17",
+		"fabric-api": "*"
+	},
+	"suggests": {
+		"another-mod": "*"
+	},
+	"accessWidener": "nether_additions.accesswidener"
+}
