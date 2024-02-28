@@ -1,4 +1,4 @@
-package org.flenarn.render.entity;
+package org.flenarn.render.entity.custom;
 
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.OverlayTexture;

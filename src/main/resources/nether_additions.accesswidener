@@ -5,9 +5,11 @@ accessible class net/minecraft/entity/projectile/FishingBobberEntity$State
 
 accessible method net/minecraft/entity/projectile/FishingBobberEntity checkForCollision ()V
 accessible method net/minecraft/entity/projectile/FishingBobberEntity updateHookedEntityId (Lnet/minecraft/entity/Entity;)V
-accessible method net/minecraft/entity/projectile/FishingBobberEntity tickFishingLogic (Lnet/minecraft/util/math/BlockPos;)V
-accessible method net/minecraft/entity/projectile/FishingBobberEntity isOpenOrWaterAround (Lnet/minecraft/util/math/BlockPos;)Z
 
+accessible field net/minecraft/entity/projectile/FishingBobberEntity lureLevel I
+accessible field net/minecraft/entity/projectile/FishingBobberEntity fishAngle F
+accessible field net/minecraft/entity/projectile/FishingBobberEntity waitCountdown I
+accessible field net/minecraft/entity/projectile/FishingBobberEntity CAUGHT_FISH Lnet/minecraft/entity/data/TrackedData;
 accessible field net/minecraft/entity/projectile/FishingBobberEntity luckOfTheSeaLevel I
 accessible field net/minecraft/entity/projectile/FishingBobberEntity caughtFish Z
 accessible field net/minecraft/entity/projectile/FishingBobberEntity removalTimer I

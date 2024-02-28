@@ -12,6 +12,7 @@ import net.minecraft.util.Identifier;
 import org.flenarn.entity.projectile.WeepingFishingBobberEntity;
 import org.flenarn.item.NetherAdditionsItemGroups;
 import org.flenarn.item.NetherAdditionsItems;
+import org.flenarn.particle.NetherAdditionsParticles;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -34,5 +35,6 @@ public class NetherAdditions implements ModInitializer {
 	public void onInitialize() {
 		NetherAdditionsItemGroups.registerItemGroups();
 		NetherAdditionsItems.registerItems();
+		NetherAdditionsParticles.registerParticles();
 	}
 }

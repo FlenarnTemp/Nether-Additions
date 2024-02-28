@@ -1,13 +1,16 @@
 package org.flenarn;
 
 import net.fabricmc.api.ClientModInitializer;
+import net.fabricmc.fabric.api.client.particle.v1.ParticleFactoryRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.minecraft.client.item.ModelPredicateProviderRegistry;
+import net.minecraft.client.particle.FishingParticle;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.Identifier;
 import org.flenarn.item.NetherAdditionsItems;
 import org.flenarn.item.custom.WeepingFishingRodItem;
-import org.flenarn.render.entity.WeepingFishingBobberEntityRenderer;
+import org.flenarn.particle.NetherAdditionsParticles;
+import org.flenarn.render.entity.custom.WeepingFishingBobberEntityRenderer;
 
 public class NetherAdditionsClient implements ClientModInitializer {
 	@Override
@@ -27,5 +30,7 @@ public class NetherAdditionsClient implements ClientModInitializer {
 				return (bl || bl2) && entity instanceof PlayerEntity && ((PlayerEntity)entity).fishHook != null ? 1.0F : 0.0F;
 			}
 		});
+
+		ParticleFactoryRegistry.getInstance().register(NetherAdditionsParticles.LAVA_FISHING, FishingParticle.Factory::new);
 	}
 }
