@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "nether_additions:block/basalt_tiles_top",
+    "side": "nether_additions:block/basalt_tiles_side"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "nether_additions:block/basalt_tiles",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "nether_additions:block/basalt_tiles"
+    },
+    "axis=z": {
+      "model": "nether_additions:block/basalt_tiles",
+      "x": 90
+    }
+  }
+}

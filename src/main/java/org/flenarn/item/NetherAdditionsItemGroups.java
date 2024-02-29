@@ -10,6 +10,7 @@ import net.minecraft.util.Identifier;
 import org.flenarn.NetherAdditions;
 
 import static org.flenarn.item.NetherAdditionsItems.*;
+import static org.flenarn.block.NetherAdditionsBlocks.*;
 
 public class NetherAdditionsItemGroups {
 
@@ -23,6 +24,15 @@ public class NetherAdditionsItemGroups {
                         entries.add(PYROLITHID);
                         entries.add(GOLDHEAD_WRASSE);
                         entries.add(LITHID_SOUP);
+
+                        entries.add(CHISELED_BASALT);
+                        entries.add(BASALT_BRICKS);
+                        entries.add(CRACKED_BASALT_BRICKS);
+                        entries.add(BASALT_BRICK_STAIRS);
+                        entries.add(BASALT_BRICK_SLAB);
+                        entries.add(BASALT_BRICK_WALL);
+                        entries.add(BASALT_TILES);
+                        entries.add(BASALT_TILES_SLAB);
                     }).build());
 
     public static void registerItemGroups() {

@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "nether_additions:block/basalt_tiles_slab"
+    },
+    "type=double": {
+      "model": "nether_additions:block/basalt_tiles"
+    },
+    "type=top": {
+      "model": "nether_additions:block/basalt_tiles_slab_top"
+    }
+  }
+}

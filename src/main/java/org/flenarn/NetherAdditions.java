@@ -9,6 +9,7 @@ import net.minecraft.entity.SpawnGroup;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
+import org.flenarn.block.NetherAdditionsBlocks;
 import org.flenarn.entity.projectile.WeepingFishingBobberEntity;
 import org.flenarn.item.NetherAdditionsItemGroups;
 import org.flenarn.item.NetherAdditionsItems;
@@ -34,8 +35,9 @@ public class NetherAdditions implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
-		NetherAdditionsItemGroups.registerItemGroups();
 		NetherAdditionsItems.registerItems();
+		NetherAdditionsBlocks.registerBlocks();
+		NetherAdditionsItemGroups.registerItemGroups();
 		NetherAdditionsParticles.registerParticles();
 		NetherAdditionsPotions.registerPotions();
 		NetherAdditionsPotions.registerPotionsRecipes();}

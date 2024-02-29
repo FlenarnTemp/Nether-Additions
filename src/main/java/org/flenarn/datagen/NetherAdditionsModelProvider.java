@@ -2,11 +2,14 @@ package org.flenarn.datagen;
 
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider;
+import net.minecraft.block.Block;
 import net.minecraft.data.client.BlockStateModelGenerator;
 import net.minecraft.data.client.ItemModelGenerator;
 import net.minecraft.data.client.Models;
+import net.minecraft.data.client.TexturedModel;
 import net.minecraft.item.Item;
 
+import static org.flenarn.block.NetherAdditionsBlocks.*;
 import static org.flenarn.item.NetherAdditionsItems.*;
 
 public class NetherAdditionsModelProvider extends FabricModelProvider {
@@ -16,7 +19,14 @@ public class NetherAdditionsModelProvider extends FabricModelProvider {
 
     @Override
     public void generateBlockStateModels(BlockStateModelGenerator blockStateModelGenerator) {
+        BlockStateModelGenerator.BlockTexturePool basalt_bricks_pool = blockStateModelGenerator.registerCubeAllModelTexturePool(BASALT_BRICKS);
+        basalt_bricks_pool.wall(BASALT_BRICK_WALL);
+        basalt_bricks_pool.stairs(BASALT_BRICK_STAIRS);
+        basalt_bricks_pool.slab(BASALT_BRICK_SLAB);
+        blockStateModelGenerator.registerSimpleCubeAll(CRACKED_BASALT_BRICKS);
 
+        blockStateModelGenerator.registerSimpleCubeAll(CHISELED_BASALT);
+        blockStateModelGenerator.registerAxisRotated(BASALT_TILES, TexturedModel.CUBE_COLUMN);
     }
 
     @Override
