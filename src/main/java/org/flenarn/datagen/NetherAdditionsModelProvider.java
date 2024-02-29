@@ -7,7 +7,7 @@ import net.minecraft.data.client.ItemModelGenerator;
 import net.minecraft.data.client.Models;
 import net.minecraft.item.Item;
 
-import static org.flenarn.item.NetherAdditionsItems.CELEOCANTH;
+import static org.flenarn.item.NetherAdditionsItems.*;
 
 public class NetherAdditionsModelProvider extends FabricModelProvider {
     public NetherAdditionsModelProvider(FabricDataOutput output) {
@@ -22,7 +22,11 @@ public class NetherAdditionsModelProvider extends FabricModelProvider {
     @Override
     public void generateItemModels(ItemModelGenerator itemModelGenerator) {
         Item[] itemsToRegisterGeneratedModel = {
-                CELEOCANTH
+                LAVACANTH,
+                PYROLITHID,
+                ECTOCARP,
+                GOLDHEAD_WRASSE,
+                LITHID_SOUP
         };
 
         for (Item item : itemsToRegisterGeneratedModel) {

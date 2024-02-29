@@ -1,0 +1,47 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_pyrolithid": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "nether_additions:pyrolithid"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "nether_additions:lithid_soup"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_warped_fungus": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:warped_fungus"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_pyrolithid",
+      "has_warped_fungus"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "nether_additions:lithid_soup"
+    ]
+  }
+}

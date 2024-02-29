@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "nether_additions:item/celeocanth"
+    "layer0": "nether_additions:item/goldhead_wrasse"
   }
 }
