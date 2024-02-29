@@ -26,6 +26,7 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import org.flenarn.NetherAdditions;
 import org.flenarn.item.NetherAdditionsItems;
+import org.flenarn.loot.NetherAdditionsLootTables;
 import org.flenarn.particle.NetherAdditionsParticles;
 
 import java.util.Collections;
@@ -279,7 +280,7 @@ public class WeepingFishingBobberEntity extends FishingBobberEntity {
                 i = this.hookedEntity instanceof ItemEntity ? 3 : 5;
             } else if (this.hookCountdown > 0) {
                 LootContextParameterSet lootContextParameterSet = (new LootContextParameterSet.Builder((ServerWorld)this.getWorld())).add(LootContextParameters.ORIGIN, this.getPos()).add(LootContextParameters.TOOL, usedItem).add(LootContextParameters.THIS_ENTITY, this).luck((float)this.luckOfTheSeaLevel + playerEntity.getLuck()).build(LootContextTypes.FISHING);
-                LootTable lootTable = this.getWorld().getServer().getLootManager().getLootTable(LootTables.FISHING_GAMEPLAY);
+                LootTable lootTable = this.getWorld().getServer().getLootManager().getLootTable(NetherAdditionsLootTables.LAVA_FISHING);
                 List<ItemStack> list = lootTable.generateLoot(lootContextParameterSet);
                 Criteria.FISHING_ROD_HOOKED.trigger((ServerPlayerEntity)playerEntity, usedItem, this, list);
 

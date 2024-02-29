@@ -1,0 +1,32 @@
+{
+  "type": "nether_additions:lava_fishing",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "nether_additions:goldhead_wrasse",
+          "weight": 60
+        },
+        {
+          "type": "minecraft:item",
+          "name": "nether_additions:pyrolithid",
+          "weight": 25
+        },
+        {
+          "type": "minecraft:item",
+          "name": "nether_additions:ectocarp",
+          "weight": 2
+        },
+        {
+          "type": "minecraft:item",
+          "name": "nether_additions:lavacanth",
+          "weight": 13
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "nether_additions:gameplay/lava_fishing/fish"
+}

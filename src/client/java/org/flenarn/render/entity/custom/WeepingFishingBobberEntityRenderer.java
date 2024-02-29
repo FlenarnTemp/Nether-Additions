@@ -51,8 +51,8 @@ public class WeepingFishingBobberEntityRenderer extends EntityRenderer<WeepingFi
                 mainArm = -mainArm;
             }
 
-            float h = playerEntity.getHandSwingProgress(g);
-            float k = MathHelper.sin(MathHelper.sqrt(h) * 3.1415927F);
+            float swingHandProgress = playerEntity.getHandSwingProgress(g);
+            float k = MathHelper.sin(MathHelper.sqrt(swingHandProgress) * 3.1415927F);
             float l = MathHelper.lerp(g, playerEntity.prevBodyYaw, playerEntity.bodyYaw) * 0.017453292F;
             double d = MathHelper.sin(l);
             double e = MathHelper.cos(l);
