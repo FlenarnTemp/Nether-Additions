@@ -7,6 +7,7 @@ import net.minecraft.data.server.recipe.RecipeExporter;
 import net.minecraft.data.server.recipe.ShapedRecipeJsonBuilder;
 import net.minecraft.data.server.recipe.ShapelessRecipeJsonBuilder;
 import net.minecraft.item.Items;
+import net.minecraft.recipe.StonecuttingRecipe;
 import net.minecraft.recipe.book.RecipeCategory;
 import org.flenarn.block.NetherAdditionsBlocks;
 import org.flenarn.item.NetherAdditionsItems;
@@ -37,11 +38,52 @@ public class NetherAdditionsRecipeProvider extends FabricRecipeProvider {
                 .criterion(hasItem(Items.WARPED_FUNGUS), conditionsFromItem(Items.WARPED_FUNGUS))
                 .offerTo(exporter);
 
-        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, NetherAdditionsBlocks.BASALT_BRICKS, 4)
+        ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, NetherAdditionsBlocks.BASALT_BRICKS, 4)
                 .pattern("SS")
                 .pattern("SS")
                 .input('S', Blocks.SMOOTH_BASALT)
                 .criterion(hasItem(Blocks.SMOOTH_BASALT), conditionsFromItem(Blocks.SMOOTH_BASALT))
+                .offerTo(exporter);
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, NetherAdditionsBlocks.BASALT_BRICK_SLAB, 6)
+                .pattern("SSS")
+                .input('S', NetherAdditionsBlocks.BASALT_BRICKS)
+                .criterion(hasItem(NetherAdditionsBlocks.BASALT_BRICKS), conditionsFromItem(NetherAdditionsBlocks.BASALT_BRICKS))
+                .offerTo(exporter);
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, NetherAdditionsBlocks.BASALT_BRICK_WALL, 6)
+                .pattern("SSS")
+                .pattern("SSS")
+                .input('S', NetherAdditionsBlocks.BASALT_BRICKS)
+                .criterion(hasItem(NetherAdditionsBlocks.BASALT_BRICKS), conditionsFromItem(NetherAdditionsBlocks.BASALT_BRICKS))
+                .offerTo(exporter);
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, NetherAdditionsBlocks.BASALT_BRICK_STAIRS, 4)
+                .pattern("  S")
+                .pattern(" SS")
+                .pattern("SSS")
+                .input('S', NetherAdditionsBlocks.BASALT_BRICKS)
+                .criterion(hasItem(NetherAdditionsBlocks.BASALT_BRICKS), conditionsFromItem(NetherAdditionsBlocks.BASALT_BRICKS))
+                .offerTo(exporter);
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, NetherAdditionsBlocks.BASALT_TILES, 4)
+                .pattern("SS")
+                .pattern("SS")
+                .input('S', NetherAdditionsBlocks.BASALT_BRICKS)
+                .criterion(hasItem(NetherAdditionsBlocks.BASALT_BRICKS), conditionsFromItem(NetherAdditionsBlocks.BASALT_BRICKS))
+                .offerTo(exporter);
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, NetherAdditionsBlocks.BASALT_TILES_SLAB, 6)
+                .pattern("SSS")
+                .input('S', NetherAdditionsBlocks.BASALT_TILES)
+                .criterion(hasItem(NetherAdditionsBlocks.BASALT_TILES), conditionsFromItem(NetherAdditionsBlocks.BASALT_TILES))
+                .offerTo(exporter);
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, NetherAdditionsBlocks.CHISELED_BASALT, 1)
+                .pattern("S")
+                .pattern("S")
+                .input('S', NetherAdditionsBlocks.BASALT_BRICK_SLAB)
+                .criterion(hasItem(NetherAdditionsBlocks.BASALT_BRICKS), conditionsFromItem(NetherAdditionsBlocks.BASALT_BRICKS))
                 .offerTo(exporter);
     }
 }
