@@ -9,7 +9,7 @@ import org.flenarn.NetherAdditions;
 
 public class NetherAdditionsStatusEffects {
 
-    public static final StatusEffect FUNGAL_AROMA = new FungalAromaEffect(StatusEffectCategory.NEUTRAL, 32191144);
+    public static final StatusEffect FUNGAL_AROMA = new FungalAromaEffect(StatusEffectCategory.NEUTRAL, 2146192);
 
     public static void registeringStatusEffects() {
         NetherAdditions.LOGGER.info("Registering status effects for " + NetherAdditions.MOD_ID + ".");

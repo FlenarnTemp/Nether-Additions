@@ -3,15 +3,15 @@
 	"id": "nether_additions",
 	"version": "${version}",
 	"name": "Nether Additions",
-	"description": "This is an example description! Tell everyone what your mod is about!",
+	"description": "Nether Additions is a mod meant to subtly expand on the Nether, in a vanilla friendly style.",
 	"authors": [
 		"Me!"
 	],
 	"contact": {
-		"homepage": "https://fabricmc.net/",
-		"sources": "https://github.com/FabricMC/fabric-example-mod"
+		"homepage": "https://modrinth.com/project/nether-additions",
+		"sources": "https://github.com/FlenarnTemp/Nether-Additions"
 	},
-	"license": "CC0-1.0",
+	"license": "Apache-2.0",
 	"icon": "assets/nether_additions/icon.png",
 	"environment": "*",
 	"entrypoints": {
