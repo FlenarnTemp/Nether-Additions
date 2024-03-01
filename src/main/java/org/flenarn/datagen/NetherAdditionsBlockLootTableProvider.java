@@ -4,8 +4,8 @@ import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricBlockLootTableProvider;
 import org.flenarn.block.NetherAdditionsBlocks;
 
-public class NetherAdditionsLootTableProvider extends FabricBlockLootTableProvider {
-    public NetherAdditionsLootTableProvider(FabricDataOutput dataOutput) {
+public class NetherAdditionsBlockLootTableProvider extends FabricBlockLootTableProvider {
+    public NetherAdditionsBlockLootTableProvider(FabricDataOutput dataOutput) {
         super(dataOutput);
     }
 

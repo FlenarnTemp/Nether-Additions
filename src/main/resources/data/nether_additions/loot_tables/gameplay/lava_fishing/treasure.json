@@ -1,5 +1,5 @@
 {
-  "type": "nether_additions:lava_:fishing",
+  "type": "minecraft:fishing",
   "pools": [
     {
       "bonus_rolls": 0.0,
@@ -19,7 +19,7 @@
               "add": false,
               "damage": {
                 "type": "minecraft:uniform",
-                "max": 0.25,
+                "max": 0.35,
                 "min": 0.0
               },
               "function": "minecraft:set_damage"
@@ -65,7 +65,7 @@
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:nautilus_shell"
+          "name": "minecraft:enchanted_golden_apple"
         }
       ],
       "rolls": 1.0

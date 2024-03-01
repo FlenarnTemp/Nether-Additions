@@ -1,12 +1,12 @@
 {
-  "type": "nether_additions:lava_fishing",
+  "type": "minecraft:fishing",
   "pools": [
     {
       "bonus_rolls": 0.0,
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "minecraft:lily_pad",
+          "name": "minecraft:quartz",
           "weight": 17
         },
         {
@@ -22,7 +22,7 @@
               "function": "minecraft:set_damage"
             }
           ],
-          "name": "minecraft:leather_boots",
+          "name": "minecraft:gold_boots",
           "weight": 10
         },
         {
@@ -36,14 +36,7 @@
           "weight": 10
         },
         {
-          "type": "minecraft:item",
-          "functions": [
-            {
-              "function": "minecraft:set_potion",
-              "id": "minecraft:water"
-            }
-          ],
-          "name": "minecraft:potion",
+          "name": "minecraft:glass_bottle",
           "weight": 10
         },
         {
@@ -64,7 +57,7 @@
               "function": "minecraft:set_damage"
             }
           ],
-          "name": "minecraft:fishing_rod",
+          "name": "minecraft:weeping_fishing_rod",
           "weight": 2
         },
         {
@@ -79,14 +72,7 @@
         },
         {
           "type": "minecraft:item",
-          "functions": [
-            {
-              "add": false,
-              "count": 10.0,
-              "function": "minecraft:set_count"
-            }
-          ],
-          "name": "minecraft:ink_sac"
+          "name": "minecraft:ghast_tear"
         },
         {
           "type": "minecraft:item",
@@ -96,36 +82,6 @@
         {
           "type": "minecraft:item",
           "name": "minecraft:rotten_flesh",
-          "weight": 10
-        },
-        {
-          "type": "minecraft:item",
-          "conditions": [
-            {
-              "condition": "minecraft:any_of",
-              "terms": [
-                {
-                  "condition": "minecraft:location_check",
-                  "predicate": {
-                    "biome": "minecraft:jungle"
-                  }
-                },
-                {
-                  "condition": "minecraft:location_check",
-                  "predicate": {
-                    "biome": "minecraft:sparse_jungle"
-                  }
-                },
-                {
-                  "condition": "minecraft:location_check",
-                  "predicate": {
-                    "biome": "minecraft:bamboo_jungle"
-                  }
-                }
-              ]
-            }
-          ],
-          "name": "minecraft:bamboo",
           "weight": 10
         }
       ],

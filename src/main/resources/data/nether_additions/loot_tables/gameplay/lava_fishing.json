@@ -1,5 +1,5 @@
 {
-  "type": "nether_additions:lava_fishing",
+  "type": "minecraft:fishing",
   "pools": [
     {
       "bonus_rolls": 0.0,
@@ -8,7 +8,7 @@
           "type": "minecraft:loot_table",
           "name": "nether_additions:gameplay/lava_fishing/junk",
           "quality": -2,
-          "weight": 10
+          "weight": 12
         },
         {
           "type": "minecraft:loot_table",
@@ -26,13 +26,13 @@
           ],
           "name": "nether_additions:gameplay/lava_fishing/treasure",
           "quality": 2,
-          "weight": 5
+          "weight": 8
         },
         {
           "type": "minecraft:loot_table",
           "name": "nether_additions:gameplay/lava_fishing/fish",
           "quality": -1,
-          "weight": 85
+          "weight": 80
         }
       ],
       "rolls": 1.0
