@@ -10,7 +10,8 @@ import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 import org.flenarn.block.NetherAdditionsBlocks;
-import org.flenarn.entity.projectile.WeepingFishingBobberEntity;
+import org.flenarn.entity.effect.NetherAdditionsStatusEffects;
+import org.flenarn.entity.projectile.custom.WeepingFishingBobberEntity;
 import org.flenarn.item.NetherAdditionsItemGroups;
 import org.flenarn.item.NetherAdditionsItems;
 import org.flenarn.item.NetherAdditionsPotions;
@@ -23,17 +24,6 @@ public class NetherAdditions implements ModInitializer {
 	public static final String MOD_ID = "nether_additions";
     public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 
-	public static final EntityType<WeepingFishingBobberEntity> WEEPING_FISHING_BOBBER_ENTITY_TYPE;
-
-	static {
-		WEEPING_FISHING_BOBBER_ENTITY_TYPE = Registry.register(
-				Registries.ENTITY_TYPE,
-				new Identifier(NetherAdditions.MOD_ID, "weeping_fishing_bobber"),
-				FabricEntityTypeBuilder.<WeepingFishingBobberEntity>create(SpawnGroup.MISC, WeepingFishingBobberEntity::new).disableSaving().disableSummon().dimensions(EntityDimensions.fixed(0.25f, 0.25f)).build()
-		);
-	}
-
-
 	@Override
 	public void onInitialize() {
 		NetherAdditionsItems.registerItems();
@@ -43,5 +33,6 @@ public class NetherAdditions implements ModInitializer {
 		NetherAdditionsPotions.registerPotions();
 		NetherAdditionsPotions.registerPotionsRecipes();
 		NetherAdditionsLootTables.registerLootTables();
+		NetherAdditionsStatusEffects.registeringStatusEffects();
 	}
 }

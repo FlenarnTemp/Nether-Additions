@@ -2,11 +2,13 @@ package org.flenarn.datagen;
 
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
+import net.minecraft.block.Blocks;
 import net.minecraft.data.server.recipe.RecipeExporter;
 import net.minecraft.data.server.recipe.ShapedRecipeJsonBuilder;
 import net.minecraft.data.server.recipe.ShapelessRecipeJsonBuilder;
 import net.minecraft.item.Items;
 import net.minecraft.recipe.book.RecipeCategory;
+import org.flenarn.block.NetherAdditionsBlocks;
 import org.flenarn.item.NetherAdditionsItems;
 
 public class NetherAdditionsRecipeProvider extends FabricRecipeProvider {
@@ -33,6 +35,13 @@ public class NetherAdditionsRecipeProvider extends FabricRecipeProvider {
                 .input(Items.NETHER_WART)
                 .criterion(hasItem(NetherAdditionsItems.PYROLITHID), conditionsFromItem(NetherAdditionsItems.PYROLITHID))
                 .criterion(hasItem(Items.WARPED_FUNGUS), conditionsFromItem(Items.WARPED_FUNGUS))
+                .offerTo(exporter);
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, NetherAdditionsBlocks.BASALT_BRICKS, 4)
+                .pattern("SS")
+                .pattern("SS")
+                .input('S', Blocks.SMOOTH_BASALT)
+                .criterion(hasItem(Blocks.SMOOTH_BASALT), conditionsFromItem(Blocks.SMOOTH_BASALT))
                 .offerTo(exporter);
     }
 }

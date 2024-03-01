@@ -15,7 +15,7 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RotationAxis;
 import net.minecraft.util.math.Vec3d;
-import org.flenarn.entity.projectile.WeepingFishingBobberEntity;
+import org.flenarn.entity.projectile.custom.WeepingFishingBobberEntity;
 import org.flenarn.item.NetherAdditionsItems;
 import org.joml.Matrix3f;
 import org.joml.Matrix4f;

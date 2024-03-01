@@ -17,6 +17,8 @@
   "block.nether_additions.basalt_tiles": "Basalt Tiles",
   "block.nether_additions.basalt_tiles_slab": "Basalt Tiles Slab",
 
+  "effect.nether_additions.fungal_aroma": "Fungal Aroma",
+
   "item.minecraft.potion.effect.levitation_potion": "Potion of Levitation",
   "item.minecraft.potion.effect.longer_levitation_potion": "Potion of Levitation",
   "item.minecraft.splash_potion.effect.levitation_potion": "Splash Potion of Levitation",

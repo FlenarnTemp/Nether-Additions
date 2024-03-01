@@ -12,7 +12,7 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
 import net.minecraft.world.event.GameEvent;
-import org.flenarn.entity.projectile.WeepingFishingBobberEntity;
+import org.flenarn.entity.projectile.custom.WeepingFishingBobberEntity;
 
 public class WeepingFishingRodItem extends FishingRodItem implements Vanishable {
     public WeepingFishingRodItem(Settings settings) {

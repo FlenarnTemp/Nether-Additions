@@ -22,7 +22,7 @@ public class NetherAdditionsPotions {
                     new Potion(new StatusEffectInstance(StatusEffects.LEVITATION, 600, 0)));
 
     public static void registerPotions() {
-
+        NetherAdditions.LOGGER.info("Registering potions for " + NetherAdditions.MOD_ID + ".");
     }
 
     public static void registerPotionsRecipes() {

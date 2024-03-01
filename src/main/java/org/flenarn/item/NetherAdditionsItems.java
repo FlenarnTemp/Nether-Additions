@@ -19,7 +19,6 @@ public class NetherAdditionsItems {
     public static Item ECTOCARP = registerItem("ectocarp", new Item(new FabricItemSettings().food(NetherAdditionsFoodComponents.ECTOCARP)));
     public static Item LITHID_SOUP = registerItem("lithid_soup", new StewItem(new FabricItemSettings().food(NetherAdditionsFoodComponents.LITHID_SOUP).maxCount(1)));
 
-
     private static Item registerItem(String name, Item item) {
         return Registry.register(Registries.ITEM, new Identifier(NetherAdditions.MOD_ID, name), item);
     }

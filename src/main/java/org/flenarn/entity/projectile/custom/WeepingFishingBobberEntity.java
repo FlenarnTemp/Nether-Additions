@@ -1,4 +1,4 @@
-package org.flenarn.entity.projectile;
+package org.flenarn.entity.projectile.custom;
 
 import net.minecraft.advancement.criterion.Criteria;
 import net.minecraft.block.BlockState;
@@ -23,7 +23,9 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
-import org.flenarn.NetherAdditions;
+import net.minecraft.world.dimension.DimensionType;
+import net.minecraft.world.dimension.DimensionTypes;
+import org.flenarn.entity.projectile.NetherAdditionsEntityTypes;
 import org.flenarn.item.NetherAdditionsItems;
 import org.flenarn.loot.NetherAdditionsLootTables;
 import org.flenarn.particle.NetherAdditionsParticles;
@@ -38,7 +40,7 @@ public class WeepingFishingBobberEntity extends FishingBobberEntity {
     }
 
     public WeepingFishingBobberEntity(PlayerEntity thrower, World world, int luckOfTheSeaLevel, int lureLevel) {
-        this(NetherAdditions.WEEPING_FISHING_BOBBER_ENTITY_TYPE, world, luckOfTheSeaLevel, lureLevel);
+        this(NetherAdditionsEntityTypes.WEEPING_FISHING_BOBBER_ENTITY_TYPE, world, luckOfTheSeaLevel, lureLevel);
         this.setOwner(thrower);
         float thrownPitch = thrower.getPitch();
         float thrownYaw = thrower.getYaw();
@@ -51,8 +53,8 @@ public class WeepingFishingBobberEntity extends FishingBobberEntity {
         double throwerEyeY = thrower.getEyeY();
         this.refreshPositionAndAngles(throwerX, throwerEyeY, throwerZ, thrownYaw, thrownPitch);
         Vec3d vec3d = new Vec3d(-i, MathHelper.clamp(-(k / j), -5.0F, 5.0F), -h);
-        double m = vec3d.length();
-        vec3d = vec3d.multiply(0.6 / m + this.random.nextTriangular(0.5, 0.0103365), 0.6 / m + this.random.nextTriangular(0.5, 0.0103365), 0.6 / m + this.random.nextTriangular(0.5, 0.0103365));
+        double vectorLength = vec3d.length();
+        vec3d = vec3d.multiply(0.6 / vectorLength + this.random.nextTriangular(0.5, 0.0103365), 0.6 / vectorLength + this.random.nextTriangular(0.5, 0.0103365), 0.6 / vectorLength + this.random.nextTriangular(0.5, 0.0103365));
         this.setVelocity(vec3d);
         this.setYaw((float)(MathHelper.atan2(vec3d.x, vec3d.z) * 57.2957763671875));
         this.setPitch((float)(MathHelper.atan2(vec3d.y, vec3d.horizontalLength()) * 57.2957763671875));
@@ -161,6 +163,10 @@ public class WeepingFishingBobberEntity extends FishingBobberEntity {
     }
 
     public final void tickLavaFishingLogic(BlockPos pos) {
+        if (this.getWorld().getDimensionKey() != DimensionTypes.THE_NETHER) {
+            return;
+        }
+
         ServerWorld serverWorld = (ServerWorld)this.getWorld();
         int i = 1;
         BlockPos blockPos = pos.up();
