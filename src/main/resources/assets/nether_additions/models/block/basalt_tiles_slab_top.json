@@ -2,7 +2,7 @@
   "parent": "minecraft:block/slab_top",
   "textures": {
     "bottom": "nether_additions:block/basalt_tiles_top",
-    "side": "nether_additions:block/basalt_tiles_side",
+    "side": "nether_additions:block/basalt_tiles",
     "top": "nether_additions:block/basalt_tiles_top"
   }
 }
