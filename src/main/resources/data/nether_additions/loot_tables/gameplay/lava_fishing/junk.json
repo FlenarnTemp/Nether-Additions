@@ -22,7 +22,7 @@
               "function": "minecraft:set_damage"
             }
           ],
-          "name": "minecraft:gold_boots",
+          "name": "minecraft:golden_boots",
           "weight": 10
         },
         {
@@ -57,7 +57,7 @@
               "function": "minecraft:set_damage"
             }
           ],
-          "name": "minecraft:weeping_fishing_rod",
+          "name": "nether_additions:weeping_fishing_rod",
           "weight": 2
         },
         {
