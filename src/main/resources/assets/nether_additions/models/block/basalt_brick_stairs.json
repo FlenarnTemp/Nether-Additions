@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/stairs",
+  "textures": {
+    "bottom": "nether_additions:block/basalt_brick_slab_top",
+    "side": "nether_additions:block/basalt_brick_slab",
+    "top": "nether_additions:block/basalt_brick_slab_top"
+  }
+}

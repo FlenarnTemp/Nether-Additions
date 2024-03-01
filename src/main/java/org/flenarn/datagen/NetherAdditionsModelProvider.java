@@ -21,7 +21,6 @@ public class NetherAdditionsModelProvider extends FabricModelProvider {
     public void generateBlockStateModels(BlockStateModelGenerator blockStateModelGenerator) {
         BlockStateModelGenerator.BlockTexturePool basalt_bricks_pool = blockStateModelGenerator.registerCubeAllModelTexturePool(BASALT_BRICKS);
         basalt_bricks_pool.wall(BASALT_BRICK_WALL);
-        basalt_bricks_pool.stairs(BASALT_BRICK_STAIRS);
         blockStateModelGenerator.registerSimpleCubeAll(CRACKED_BASALT_BRICKS);
 
         blockStateModelGenerator.registerSimpleCubeAll(CHISELED_BASALT);
