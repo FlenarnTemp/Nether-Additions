@@ -290,7 +290,7 @@ public class WeepingFishingBobberEntity extends FishingBobberEntity {
                 Criteria.FISHING_ROD_HOOKED.trigger((ServerPlayerEntity)playerEntity, usedItem, this, list);
 
                 for (ItemStack itemStack : list) {
-                    ItemEntity itemEntity = new ItemEntity(this.getWorld(), this.getX(), this.getY() + 0.85d, this.getZ(), itemStack);
+                    ItemEntity itemEntity = new ItemEntity(this.getWorld(), this.getX(), this.getY() + 1d, this.getZ(), itemStack);
                     double d = playerEntity.getX() - this.getX();
                     double e = playerEntity.getY() - this.getY();
                     double f = playerEntity.getZ() - this.getZ();
