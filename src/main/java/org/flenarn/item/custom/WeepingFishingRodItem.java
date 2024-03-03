@@ -1,10 +1,10 @@
 package org.flenarn.item.custom;
 
 import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.FishingRodItem;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Vanishable;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.stat.Stats;
@@ -14,7 +14,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.event.GameEvent;
 import org.flenarn.entity.projectile.custom.WeepingFishingBobberEntity;
 
-public class WeepingFishingRodItem extends FishingRodItem implements Vanishable {
+public class WeepingFishingRodItem extends FishingRodItem {
     public WeepingFishingRodItem(Settings settings) {
         super(settings);
     }
@@ -26,9 +26,7 @@ public class WeepingFishingRodItem extends FishingRodItem implements Vanishable 
         if (user.fishHook != null) {
             if (!world.isClient) {
                 i = user.fishHook.use(itemStack);
-                itemStack.damage(i, user, (p) -> {
-                    p.sendToolBreakStatus(hand);
-                });
+                itemStack.damage(i, user, LivingEntity.getSlotForHand(hand));
             }
 
             world.playSound(null, user.getX(), user.getY(), user.getZ(), SoundEvents.ENTITY_FISHING_BOBBER_RETRIEVE, SoundCategory.NEUTRAL, 1.0F, 0.4F / (world.getRandom().nextFloat() * 0.4F + 0.8F));

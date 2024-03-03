@@ -11,9 +11,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:weeping_vines"
-            ]
+            "items": "minecraft:weeping_vines"
           }
         ]
       },

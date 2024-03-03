@@ -1,6 +1,5 @@
 package org.flenarn.block;
 
-import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.block.*;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
@@ -24,7 +23,7 @@ public class NetherAdditionsBlocks {
     public static final Block CRACKED_BASALT_BRICKS = registerBlockWithItem("cracked_basalt_bricks", new Block(AbstractBlock.Settings.copy(Blocks.BASALT)));
     private static Item registerBlockItem(String name, Block block) {
         return Registry.register(Registries.ITEM, new Identifier(NetherAdditions.MOD_ID, name),
-                new BlockItem(block, new FabricItemSettings()));
+                new BlockItem(block, new Item.Settings()));
     }
 
     private static Block registerBlock(String name, Block block) {

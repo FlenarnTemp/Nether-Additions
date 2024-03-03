@@ -19,6 +19,7 @@ import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.stat.Stats;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
@@ -163,7 +164,7 @@ public class WeepingFishingBobberEntity extends FishingBobberEntity {
     }
 
     public final void tickLavaFishingLogic(BlockPos pos) {
-        if (this.getWorld().getDimensionKey() != DimensionTypes.THE_NETHER) {
+        if (!this.getWorld().getDimensionEntry().matchesId(new Identifier("the_nether"))) {
             return;
         }
 

@@ -1,9 +1,9 @@
 package org.flenarn.mixin;
 
-import net.minecraft.entity.effect.StatusEffects;
+
 import net.minecraft.entity.mob.HoglinEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.registry.tag.BlockTags;
+
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 import org.flenarn.entity.effect.NetherAdditionsStatusEffects;

@@ -2,7 +2,7 @@
   "type": "minecraft:stonecutting",
   "count": 2,
   "ingredient": {
-    "item": "nether_additions:basalt_bricks"
+    "item": ["nether_additions:basalt_bricks"],
   },
   "result": "nether_additions:basalt_brick_slab"
 }

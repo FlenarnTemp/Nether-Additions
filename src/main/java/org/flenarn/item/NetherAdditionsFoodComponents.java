@@ -1,8 +1,10 @@
 package org.flenarn.item;
 
+import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.FoodComponent;
+import net.minecraft.registry.entry.RegistryEntry;
 import org.flenarn.entity.effect.NetherAdditionsStatusEffects;
 
 public class NetherAdditionsFoodComponents {
