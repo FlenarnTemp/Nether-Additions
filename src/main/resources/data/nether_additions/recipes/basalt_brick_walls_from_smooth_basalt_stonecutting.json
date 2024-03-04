@@ -4,5 +4,7 @@
   "ingredient": {
     "item": "minecraft:smooth_basalt"
   },
-  "result": "nether_additions:basalt_brick_wall"
+  "result": {
+    "id": "nether_additions:basalt_brick_wall"
+  }
 }
