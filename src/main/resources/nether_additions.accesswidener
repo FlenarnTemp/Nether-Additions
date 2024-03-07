@@ -2,6 +2,7 @@ accessWidener v2 named
 
 accessible class net/minecraft/entity/projectile/FishingBobberEntity$PositionType
 accessible class net/minecraft/entity/projectile/FishingBobberEntity$State
+accessible class net/minecraft/entity/effect/StatusEffect
 
 accessible method net/minecraft/entity/projectile/FishingBobberEntity checkForCollision ()V
 accessible method net/minecraft/entity/projectile/FishingBobberEntity updateHookedEntityId (Lnet/minecraft/entity/Entity;)V

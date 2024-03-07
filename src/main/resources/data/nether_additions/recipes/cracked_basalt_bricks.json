@@ -6,5 +6,7 @@
   "ingredient": {
     "item": "nether_additions:basalt_bricks"
   },
-  "result": "nether_additions:cracked_basalt_bricks"
+  "result": {
+    "id": "nether_additions:cracked_basalt_bricks"
+  }
 }

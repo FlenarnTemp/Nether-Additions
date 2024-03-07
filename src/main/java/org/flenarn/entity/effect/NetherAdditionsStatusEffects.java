@@ -10,7 +10,7 @@ import org.flenarn.NetherAdditions;
 
 public class NetherAdditionsStatusEffects {
 
-    public static RegistryEntry<StatusEffect> FUNGAL_AROMA;
+    public static final RegistryEntry<StatusEffect> FUNGAL_AROMA = register("fungal_aroma", new FungalAromaEffect(StatusEffectCategory.NEUTRAL, 2146192));
 
     private static RegistryEntry<StatusEffect> register(String id, StatusEffect statusEffect) {
         return Registry.registerReference(Registries.STATUS_EFFECT, new Identifier(NetherAdditions.MOD_ID, id), statusEffect);
@@ -18,6 +18,5 @@ public class NetherAdditionsStatusEffects {
 
     public static void registeringStatusEffects() {
         NetherAdditions.LOGGER.info("Registering status effects for " + NetherAdditions.MOD_ID + ".");
-        FUNGAL_AROMA = register("fungal_aroma", new FungalAromaEffect(StatusEffectCategory.NEUTRAL, 2146192));
     }
 }
