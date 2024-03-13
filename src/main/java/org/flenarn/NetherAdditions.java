@@ -16,6 +16,7 @@ import org.flenarn.item.NetherAdditionsItemGroups;
 import org.flenarn.item.NetherAdditionsItems;
 import org.flenarn.item.NetherAdditionsPotions;
 import org.flenarn.loot.NetherAdditionsLootTables;
+import org.flenarn.painting.NetherAdditionsPaintings;
 import org.flenarn.particle.NetherAdditionsParticles;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -34,5 +35,6 @@ public class NetherAdditions implements ModInitializer {
 		NetherAdditionsPotions.registerPotionsRecipes();
 		NetherAdditionsLootTables.registerLootTables();
 		NetherAdditionsStatusEffects.registeringStatusEffects();
+		NetherAdditionsPaintings.registerPaintings();
 	}
 }
