@@ -9,7 +9,7 @@ import org.flenarn.NetherAdditions;
 
 public class NetherAdditionsPaintings {
     public static final PaintingVariant PURSUIT = registerPainting("pursuit", new PaintingVariant(48,32));
-    public static final PaintingVariant FAMILYMEETING = registerPainting("familymeeting", new PaintingVariant(64,32));
+    public static final PaintingVariant FAMILYMEETING = registerPainting("familymeeting", new PaintingVariant(32,32));
 
     private static PaintingVariant registerPainting(String name, PaintingVariant paintingVariant) {
         return Registry.register(Registries.PAINTING_VARIANT, new Identifier(NetherAdditions.MOD_ID, name), paintingVariant);
