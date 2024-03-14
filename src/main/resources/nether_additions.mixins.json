@@ -3,7 +3,7 @@
   "package": "org.flenarn.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
-    "HoglinSpecificSensor",
+    "HoglinSpecificSensorMixin",
     "PiglinBrainMixin"
   ],
   "injectors": {

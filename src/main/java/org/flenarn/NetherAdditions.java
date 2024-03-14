@@ -22,6 +22,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class NetherAdditions implements ModInitializer {
+
 	public static final String MOD_ID = "nether_additions";
     public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 

@@ -1,6 +1,5 @@
 package org.flenarn.loot;
 
-
 import net.minecraft.util.Identifier;
 import org.flenarn.NetherAdditions;
 

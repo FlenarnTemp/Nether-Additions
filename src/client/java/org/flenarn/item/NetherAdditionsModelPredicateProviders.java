@@ -3,6 +3,7 @@ package org.flenarn.item;
 import net.minecraft.client.item.ModelPredicateProviderRegistry;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.Identifier;
+
 import org.flenarn.item.custom.WeepingFishingRodItem;
 
 public class NetherAdditionsModelPredicateProviders {

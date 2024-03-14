@@ -1,6 +1,7 @@
 package org.flenarn.render.entity.custom;
 
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
+
 import org.flenarn.entity.projectile.NetherAdditionsEntityTypes;
 
 public class NetherAdditionsEntityRenderers {
