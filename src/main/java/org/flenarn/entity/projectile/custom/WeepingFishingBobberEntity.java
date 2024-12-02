@@ -25,10 +25,10 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraft.world.dimension.DimensionTypes;
 
-import org.flenarn.NetherAdditions;
 import org.flenarn.entity.projectile.NetherAdditionsEntityTypes;
 import org.flenarn.item.NetherAdditionsItems;
 import org.flenarn.loot.NetherAdditionsLootTables;
+import org.flenarn.mixin.FishingBobberEntityMixin;
 import org.flenarn.particle.NetherAdditionsParticles;
 
 import java.util.Collections;
@@ -36,29 +36,29 @@ import java.util.List;
 
 public class WeepingFishingBobberEntity extends FishingBobberEntity {
 
-    public WeepingFishingBobberEntity(EntityType<? extends FishingBobberEntity> type, World world, int luckOfTheSeaLevel, int lureLevel) {
-        super(type, world, luckOfTheSeaLevel, lureLevel);
+    public WeepingFishingBobberEntity(EntityType<? extends FishingBobberEntity> type, World world, int luckBonus, int waitTimeReductionTicks) {
+        super(type, world, luckBonus, waitTimeReductionTicks);
     }
 
-    public WeepingFishingBobberEntity(PlayerEntity thrower, World world, int luckOfTheSeaLevel, int lureLevel) {
-        this(NetherAdditionsEntityTypes.WEEPING_FISHING_BOBBER_ENTITY_TYPE, world, luckOfTheSeaLevel, lureLevel);
+    public WeepingFishingBobberEntity(PlayerEntity thrower, World world, int luckBonus, int waitTimeReductionTicks) {
+        this(NetherAdditionsEntityTypes.WEEPING_FISHING_BOBBER_ENTITY_TYPE, world, luckBonus, waitTimeReductionTicks);
         this.setOwner(thrower);
         float thrownPitch = thrower.getPitch();
         float thrownYaw = thrower.getYaw();
-        float h = MathHelper.cos(-thrownYaw * 0.017453292F - 3.1415927F);
-        float i = MathHelper.sin(-thrownYaw * 0.017453292F - 3.1415927F);
-        float j = -MathHelper.cos(-thrownPitch * 0.017453292F);
-        float k = MathHelper.sin(-thrownPitch * 0.017453292F);
-        double throwerX = thrower.getX() - (double)i * 0.3;
-        double throwerZ = thrower.getZ() - (double)h * 0.3;
+        float h = MathHelper.cos(-thrownYaw * ((float)Math.PI / 180F) - (float)Math.PI);
+        float i = MathHelper.sin(-thrownYaw * ((float)Math.PI / 180F) - (float)Math.PI);
+        float j = -MathHelper.cos(-thrownPitch * ((float)Math.PI / 180F));
+        float k = MathHelper.sin(-thrownPitch * ((float)Math.PI / 180F));
+        double throwerX = thrower.getX() - (double) i * 0.3;
+        double throwerZ = thrower.getZ() - (double) h * 0.3;
         double throwerEyeY = thrower.getEyeY();
         this.refreshPositionAndAngles(throwerX, throwerEyeY, throwerZ, thrownYaw, thrownPitch);
-        Vec3d vec3d = new Vec3d(-i, MathHelper.clamp(-(k / j), -5.0F, 5.0F), -h);
+        Vec3d vec3d = new Vec3d(-i, MathHelper.clamp(-(k / j), -5.0F, 5.0F), (double) -h);
         double vectorLength = vec3d.length();
         vec3d = vec3d.multiply(0.6 / vectorLength + this.random.nextTriangular(0.5, 0.0103365), 0.6 / vectorLength + this.random.nextTriangular(0.5, 0.0103365), 0.6 / vectorLength + this.random.nextTriangular(0.5, 0.0103365));
         this.setVelocity(vec3d);
-        this.setYaw((float)(MathHelper.atan2(vec3d.x, vec3d.z) * 57.2957763671875));
-        this.setPitch((float)(MathHelper.atan2(vec3d.y, vec3d.horizontalLength()) * 57.2957763671875));
+        this.setYaw((float)(MathHelper.atan2(vec3d.x, vec3d.z) * (double)(180F / (float)Math.PI)));
+        this.setPitch((float)(MathHelper.atan2(vec3d.y, vec3d.horizontalLength()) * (double)(180F / (float)Math.PI)));
         this.prevYaw = this.getYaw();
         this.prevPitch = this.getPitch();
     }
@@ -141,7 +141,7 @@ public class WeepingFishingBobberEntity extends FishingBobberEntity {
                         }
 
                         if (!this.getWorld().isClient) {
-                            this.tickLavaFishingLogic(blockPos);
+                            this.tickLavaFishingLogic();
                         }
                     } else {
                         this.outOfOpenWaterTicks = Math.min(10, this.outOfOpenWaterTicks + 1);
@@ -164,14 +164,14 @@ public class WeepingFishingBobberEntity extends FishingBobberEntity {
         }
     }
 
-    public final void tickLavaFishingLogic(BlockPos pos) {
+    public final void tickLavaFishingLogic() {
         if (!this.getWorld().getDimensionEntry().matchesKey(DimensionTypes.THE_NETHER)) {
             return;
         }
 
         ServerWorld serverWorld = (ServerWorld)this.getWorld();
         int i = 1;
-        BlockPos blockPos = pos.up();
+
         if (this.random.nextFloat() < 0.25F) {
             ++i;
         }
@@ -187,77 +187,71 @@ public class WeepingFishingBobberEntity extends FishingBobberEntity {
                 this.fishTravelCountdown = 0;
                 this.getDataTracker().set(CAUGHT_FISH, false);
             }
-        } else {
-            float f;
-            float g;
-            float h;
-            double d;
-            double e;
-            double j;
-            BlockState blockState;
+        } else if (this.fishTravelCountdown > 0) {
+            this.fishTravelCountdown -= i;
             if (this.fishTravelCountdown > 0) {
-                this.fishTravelCountdown -= i;
-                if (this.fishTravelCountdown > 0) {
-                    this.fishAngle += (float)this.random.nextTriangular(0.0, 9.188);
-                    f = this.fishAngle * 0.017453292F;
-                    g = MathHelper.sin(f);
-                    h = MathHelper.cos(f);
-                    d = this.getX() + (double)(g * (float)this.fishTravelCountdown * 0.1F);
-                    e = (float)MathHelper.floor(this.getY()) + 1.0F;
-                    j = this.getZ() + (double)(h * (float)this.fishTravelCountdown * 0.1F);
-                    blockState = serverWorld.getBlockState(BlockPos.ofFloored(d, e - 1.0, j));
-                    if (blockState.isOf(Blocks.LAVA)) {
-                        if (this.random.nextFloat() < 0.15F) {
-                            serverWorld.spawnParticles(ParticleTypes.LAVA, d, e - 0.10000000149011612, j, 1, g, 0.1, h, 0.0);
-                        }
-
-                        float k = g * 0.04F;
-                        float l = h * 0.04F;
-                        serverWorld.spawnParticles(NetherAdditionsParticles.LAVA_FISHING, d, e, j, 0, l, 0.01, -k, 1.0);
-                        serverWorld.spawnParticles(ParticleTypes.SMOKE, d, e + 0.15, j, 0, l, 0.01, -k, 1.0);
-
-                        serverWorld.spawnParticles(NetherAdditionsParticles.LAVA_FISHING, d, e, j, 0, -l, 0.01, k, 1.0);
-                        serverWorld.spawnParticles(ParticleTypes.SMOKE, d, e + 0.15, j, 0, -l, 0.01, k, 1.0);
+                this.fishAngle += (float) this.random.nextTriangular(0.0, 9.188);
+                float f = this.fishAngle * ((float) Math.PI / 180F);
+                ;
+                float g = MathHelper.sin(f);
+                float h = MathHelper.cos(f);
+                double d = this.getX() + (double) (g * (float) this.fishTravelCountdown * 0.1F);
+                double e = (float) MathHelper.floor(this.getY()) + 1.0F;
+                double j = this.getZ() + (double) (h * (float) this.fishTravelCountdown * 0.1F);
+                BlockState blockState = serverWorld.getBlockState(BlockPos.ofFloored(d, e - 1.0, j));
+                if (blockState.isOf(Blocks.LAVA)) {
+                    if (this.random.nextFloat() < 0.15F) {
+                        serverWorld.spawnParticles(ParticleTypes.LAVA, d, e - (double) 0.1F, j, 1, g, 0.1, h, 0.0);
                     }
-                } else {
-                    this.playSound(SoundEvents.ENTITY_FISHING_BOBBER_SPLASH, 0.25F, 1.0F + (this.random.nextFloat() - this.random.nextFloat()) * 0.4F);
-                    double m = this.getY() + 0.5;
-                    serverWorld.spawnParticles(ParticleTypes.LAVA, this.getX(), m, this.getZ(), (int)(1.0F + this.getWidth() * 20.0F), this.getWidth(), 0.0, this.getWidth(), 0.20000000298023224);
-                    serverWorld.spawnParticles(NetherAdditionsParticles.LAVA_FISHING, this.getX(), m, this.getZ(), (int)(1.0F + this.getWidth() * 20.0F), this.getWidth(), 0.0, this.getWidth(), 0.20000000298023224);
-                    this.hookCountdown = MathHelper.nextInt(this.random, 20, 40);
-                    this.getDataTracker().set(CAUGHT_FISH, true);
-                }
-            } else if (this.waitCountdown > 0) {
-                this.waitCountdown -= i;
-                f = 0.15F;
-                if (this.waitCountdown < 20) {
-                    f += (float)(20 - this.waitCountdown) * 0.05F;
-                } else if (this.waitCountdown < 40) {
-                    f += (float)(40 - this.waitCountdown) * 0.02F;
-                } else if (this.waitCountdown < 60) {
-                    f += (float)(60 - this.waitCountdown) * 0.01F;
-                }
 
-                if (this.random.nextFloat() < f) {
-                    g = MathHelper.nextFloat(this.random, 0.0F, 360.0F) * 0.017453292F;
-                    h = MathHelper.nextFloat(this.random, 25.0F, 60.0F);
-                    d = this.getX() + (double)(MathHelper.sin(g) * h) * 0.1;
-                    e = (float)MathHelper.floor(this.getY()) + 1.0F;
-                    j = this.getZ() + (double)(MathHelper.cos(g) * h) * 0.1;
-                    blockState = serverWorld.getBlockState(BlockPos.ofFloored(d, e - 1.0, j));
-                    if (blockState.isOf(Blocks.LAVA) && random.nextInt(2) == 1) {
-                        serverWorld.spawnParticles(ParticleTypes.LAVA, d, e, j, 1 + this.random.nextInt(1), 0.10000000149011612, 0.0, 0.10000000149011612, 0.0);
-                    }
-                }
+                    float k = g * 0.04F;
+                    float l = h * 0.04F;
+                    serverWorld.spawnParticles(NetherAdditionsParticles.LAVA_FISHING, d, e, j, 0, l, 0.01, -k, 1.0);
+                    serverWorld.spawnParticles(ParticleTypes.SMOKE, d, e + 0.15, j, 0, l, 0.01, -k, 1.0);
 
-                if (this.waitCountdown <= 0) {
-                    this.fishAngle = MathHelper.nextFloat(this.random, 0.0F, 360.0F);
-                    this.fishTravelCountdown = MathHelper.nextInt(this.random, 20, 80);
+                    serverWorld.spawnParticles(NetherAdditionsParticles.LAVA_FISHING, d, e, j, 0, -l, 0.01, k, 1.0);
+                    serverWorld.spawnParticles(ParticleTypes.SMOKE, d, e + 0.15, j, 0, -l, 0.01, k, 1.0);
                 }
             } else {
-                this.waitCountdown = MathHelper.nextInt(this.random, 100, 600);
-                this.waitCountdown -= this.lureLevel * 20 * 5;
+                this.playSound(SoundEvents.ENTITY_FISHING_BOBBER_SPLASH, 0.25F, 1.0F + (this.random.nextFloat() - this.random.nextFloat()) * 0.4F);
+                double m = this.getY() + 0.5;
+                serverWorld.spawnParticles(ParticleTypes.LAVA, this.getX(), m, this.getZ(), (int) (1.0F + this.getWidth() * 20.0F), this.getWidth(), 0.0, this.getWidth(), 0.20000000298023224);
+                serverWorld.spawnParticles(NetherAdditionsParticles.LAVA_FISHING, this.getX(), m, this.getZ(), (int) (1.0F + this.getWidth() * 20.0F), this.getWidth(), 0.0, this.getWidth(), 0.20000000298023224);
+                this.hookCountdown = MathHelper.nextInt(this.random, 20, 40);
+                this.getDataTracker().set(CAUGHT_FISH, true);
             }
+        } else if (this.waitCountdown > 0) {
+            this.waitCountdown -= i;
+            float f = 0.15F;
+            if (this.waitCountdown < 20) {
+                f += (float) (20 - this.waitCountdown) * 0.05F;
+            } else if (this.waitCountdown < 40) {
+                f += (float) (40 - this.waitCountdown) * 0.02F;
+            } else if (this.waitCountdown < 60) {
+                f += (float) (60 - this.waitCountdown) * 0.01F;
+            }
+
+            if (this.random.nextFloat() < f) {
+                float g = MathHelper.nextFloat(this.random, 0.0F, 360.0F) * ((float)Math.PI / 180F);;
+                float h = MathHelper.nextFloat(this.random, 25.0F, 60.0F);
+                double d = this.getX() + (double) (MathHelper.sin(g) * h) * 0.1;
+                double e = (float) MathHelper.floor(this.getY()) + 1.0F;
+                double j = this.getZ() + (double) (MathHelper.cos(g) * h) * 0.1;
+                BlockState blockState = serverWorld.getBlockState(BlockPos.ofFloored(d, e - 1.0, j));
+                if (blockState.isOf(Blocks.LAVA) && random.nextInt(2) == 1) {
+                    serverWorld.spawnParticles(ParticleTypes.LAVA, d, e, j, 1 + this.random.nextInt(1), 0.1F, 0.0, 0.1F, 0.0);
+                }
+            }
+
+            if (this.waitCountdown <= 0) {
+                this.fishAngle = MathHelper.nextFloat(this.random, 0.0F, 360.0F);
+                this.fishTravelCountdown = MathHelper.nextInt(this.random, 20, 80);
+            }
+        } else {
+            this.waitCountdown = MathHelper.nextInt(this.random, 100, 600);
+
+            FishingBobberEntityMixin fishingBobberEntityMixin = (FishingBobberEntityMixin) this;
+            this.waitCountdown -= fishingBobberEntityMixin.getLuckBonus() * 20 * 5;
         }
 
     }
@@ -283,10 +277,11 @@ public class WeepingFishingBobberEntity extends FishingBobberEntity {
             if (this.hookedEntity != null) {
                 this.pullHookedEntity(this.hookedEntity);
                 Criteria.FISHING_ROD_HOOKED.trigger((ServerPlayerEntity)playerEntity, usedItem, this, Collections.emptyList());
-                this.getWorld().sendEntityStatus(this, (byte)31);
+                this.getWorld().sendEntityStatus(this, (byte) 31);
                 i = this.hookedEntity instanceof ItemEntity ? 3 : 5;
             } else if (this.hookCountdown > 0) {
-                LootContextParameterSet lootContextParameterSet = (new LootContextParameterSet.Builder((ServerWorld)this.getWorld())).add(LootContextParameters.ORIGIN, this.getPos()).add(LootContextParameters.TOOL, usedItem).add(LootContextParameters.THIS_ENTITY, this).luck((float)this.luckOfTheSeaLevel + playerEntity.getLuck()).build(LootContextTypes.FISHING);
+                FishingBobberEntityMixin fishingBobberEntityMixin = (FishingBobberEntityMixin)this;
+                LootContextParameterSet lootContextParameterSet = (new LootContextParameterSet.Builder((ServerWorld)this.getWorld())).add(LootContextParameters.ORIGIN, this.getPos()).add(LootContextParameters.TOOL, usedItem).add(LootContextParameters.THIS_ENTITY, this).luck((float)fishingBobberEntityMixin.getLuckBonus() + playerEntity.getLuck()).build(LootContextTypes.FISHING);
                 LootTable lootTable = this.getWorld().getServer().getReloadableRegistries().getLootTable(NetherAdditionsLootTables.LAVA_FISHING_GAMEPLAY);
                 List<ItemStack> list = lootTable.generateLoot(lootContextParameterSet);
                 Criteria.FISHING_ROD_HOOKED.trigger((ServerPlayerEntity)playerEntity, usedItem, this, list);

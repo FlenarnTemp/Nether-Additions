@@ -22,7 +22,7 @@ public class NetherAdditionsPotions {
 
     public static RegistryEntry<Potion> register(String name, Potion potion)
     {
-        return Registry.registerReference(Registries.POTION, new Identifier(NetherAdditions.MOD_ID, name), potion);
+        return Registry.registerReference(Registries.POTION, Identifier.of(NetherAdditions.MOD_ID, name), potion);
     }
 
     static {

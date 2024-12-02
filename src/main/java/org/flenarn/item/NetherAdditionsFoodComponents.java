@@ -3,12 +3,13 @@ package org.flenarn.item;
 import net.minecraft.component.type.FoodComponent;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
+import net.minecraft.item.Items;
 import org.flenarn.entity.effect.NetherAdditionsStatusEffects;
 
 public class NetherAdditionsFoodComponents {
 
     private static FoodComponent.Builder createStew(int nutrition) {
-        return (new FoodComponent.Builder()).nutrition(nutrition).saturationModifier(0.6F);
+        return (new FoodComponent.Builder()).nutrition(nutrition).saturationModifier(0.6F).usingConvertsTo(Items.BOWL);
     }
 
     public static final FoodComponent GOLDHEAD_WRASSE = new FoodComponent.Builder().nutrition(4).saturationModifier(0.5f).build();

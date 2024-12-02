@@ -19,7 +19,7 @@ public class NetherAdditionsEntityTypes {
     static {
         WEEPING_FISHING_BOBBER_ENTITY_TYPE = Registry.register(
                 Registries.ENTITY_TYPE,
-                new Identifier(NetherAdditions.MOD_ID, "weeping_fishing_bobber"),
+                Identifier.of(NetherAdditions.MOD_ID, "weeping_fishing_bobber"),
                 FabricEntityTypeBuilder.<WeepingFishingBobberEntity>create(SpawnGroup.MISC, WeepingFishingBobberEntity::new).disableSaving().disableSummon().dimensions(EntityDimensions.fixed(0.25f, 0.25f)).build()
         );
     }

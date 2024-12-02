@@ -15,6 +15,6 @@ public class NetherAdditionsParticles {
 
     public static void registerParticles() {
         NetherAdditions.LOGGER.info("Registering particles for " + NetherAdditions.MOD_ID + ".");
-        Registry.register(Registries.PARTICLE_TYPE, new Identifier(NetherAdditions.MOD_ID, "lava_fishing"), LAVA_FISHING);
+        Registry.register(Registries.PARTICLE_TYPE, Identifier.of(NetherAdditions.MOD_ID, "lava_fishing"), LAVA_FISHING);
     }
 }

@@ -14,7 +14,7 @@ public class NetherAdditionsStatusEffects {
     public static final RegistryEntry<StatusEffect> FUNGAL_AROMA = register("fungal_aroma", new FungalAromaEffect(StatusEffectCategory.NEUTRAL, 2146192));
 
     private static RegistryEntry<StatusEffect> register(String id, StatusEffect statusEffect) {
-        return Registry.registerReference(Registries.STATUS_EFFECT, new Identifier(NetherAdditions.MOD_ID, id), statusEffect);
+        return Registry.registerReference(Registries.STATUS_EFFECT, Identifier.of(NetherAdditions.MOD_ID, id), statusEffect);
     }
 
     public static void registeringStatusEffects() {

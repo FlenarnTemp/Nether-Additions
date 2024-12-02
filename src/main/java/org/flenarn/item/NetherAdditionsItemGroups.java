@@ -16,7 +16,7 @@ import static org.flenarn.block.NetherAdditionsBlocks.*;
 public class NetherAdditionsItemGroups {
 
     public static final ItemGroup NETHER_ADDITONS_GROUP = Registry.register(Registries.ITEM_GROUP,
-            new Identifier(NetherAdditions.MOD_ID, "nether_additions"),
+            Identifier.of(NetherAdditions.MOD_ID, "nether_additions"),
             FabricItemGroup.builder().displayName(Text.translatable("itemgroup.NetherAdditions"))
                     .icon(() -> new ItemStack(PYROLITHID)).entries((displayContext, entries) -> {
                         entries.add(WEEPING_FISHING_ROD);

@@ -8,7 +8,7 @@ import org.flenarn.item.custom.WeepingFishingRodItem;
 
 public class NetherAdditionsModelPredicateProviders {
     public static void registerModelPredicateProviders() {
-        ModelPredicateProviderRegistry.register(NetherAdditionsItems.WEEPING_FISHING_ROD, new Identifier("cast"), (stack, world, entity, seed) -> {
+        ModelPredicateProviderRegistry.register(NetherAdditionsItems.WEEPING_FISHING_ROD, Identifier.of("cast"), (stack, world, entity, seed) -> {
             if (entity == null) {
                 return 0.0f;
             } else {

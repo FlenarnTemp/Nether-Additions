@@ -5,6 +5,7 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.FishingRodItem;
 import net.minecraft.item.ItemStack;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.stat.Stats;
@@ -23,10 +24,9 @@ public class WeepingFishingRodItem extends FishingRodItem  {
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
         ItemStack itemStack = user.getStackInHand(hand);
-        int i;
         if (user.fishHook != null) {
             if (!world.isClient) {
-                i = user.fishHook.use(itemStack);
+                int i = user.fishHook.use(itemStack);
                 itemStack.damage(i, user, LivingEntity.getSlotForHand(hand));
             }
 
@@ -34,9 +34,10 @@ public class WeepingFishingRodItem extends FishingRodItem  {
             user.emitGameEvent(GameEvent.ITEM_INTERACT_FINISH);
         } else {
             world.playSound(null, user.getX(), user.getY(), user.getZ(), SoundEvents.ENTITY_FISHING_BOBBER_THROW, SoundCategory.NEUTRAL, 0.5F, 0.4F / (world.getRandom().nextFloat() * 0.4F + 0.8F));
-            if (!world.isClient) {
-                i = EnchantmentHelper.getLure(itemStack);
-                int j = EnchantmentHelper.getLuckOfTheSea(itemStack);
+            if (world instanceof ServerWorld) {
+                ServerWorld serverWorld = (ServerWorld) world;
+                int i = (int) (EnchantmentHelper.getFishingTimeReduction(serverWorld, itemStack, user) * 20.0F);
+                int j = EnchantmentHelper.getFishingLuckBonus(serverWorld, itemStack, user);
                 world.spawnEntity(new WeepingFishingBobberEntity(user, world, j, i));
             }
 

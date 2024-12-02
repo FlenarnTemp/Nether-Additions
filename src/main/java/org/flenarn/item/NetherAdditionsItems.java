@@ -1,7 +1,6 @@
 package org.flenarn.item;
 
 import net.minecraft.item.Item;
-import net.minecraft.item.StewItem;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
@@ -17,10 +16,10 @@ public class NetherAdditionsItems {
     public static Item LAVACANTH = registerItem("lavacanth", new Item(new Item.Settings().food(NetherAdditionsFoodComponents.LAVACANTH).fireproof()));
     public static Item GOLDHEAD_WRASSE = registerItem("goldhead_wrasse", new Item(new Item.Settings().food(NetherAdditionsFoodComponents.GOLDHEAD_WRASSE).fireproof()));
     public static Item ECTOCARP = registerItem("ectocarp", new Item(new Item.Settings().food(NetherAdditionsFoodComponents.ECTOCARP).fireproof()));
-    public static Item LITHID_SOUP = registerItem("lithid_soup", new StewItem(new Item.Settings().food(NetherAdditionsFoodComponents.LITHID_SOUP).maxCount(1)));
+    public static Item LITHID_SOUP = registerItem("lithid_soup", new Item(new Item.Settings().food(NetherAdditionsFoodComponents.LITHID_SOUP).maxCount(1)));
 
     private static Item registerItem(String name, Item item) {
-        return Registry.register(Registries.ITEM, new Identifier(NetherAdditions.MOD_ID, name), item);
+        return Registry.register(Registries.ITEM, Identifier.of(NetherAdditions.MOD_ID, name), item);
     }
 
     public static void registerItems() {
