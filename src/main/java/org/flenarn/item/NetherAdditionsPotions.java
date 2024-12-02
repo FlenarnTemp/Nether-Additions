@@ -1,8 +1,11 @@
 package org.flenarn.item;
 
+import net.fabricmc.fabric.api.registry.FabricBrewingRecipeRegistryBuilder;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
+import net.minecraft.item.Items;
 import net.minecraft.potion.Potion;
+import net.minecraft.potion.Potions;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.entry.RegistryEntry;
@@ -29,5 +32,15 @@ public class NetherAdditionsPotions {
 
     public static void registerPotions() {
         NetherAdditions.LOGGER.info("Registering potions for " + NetherAdditions.MOD_ID + ".");
+    }
+
+    public static void registerPotionRecipes() {
+        NetherAdditions.LOGGER.info("Registering potion recipes for " + NetherAdditions.MOD_ID + ".");
+        FabricBrewingRecipeRegistryBuilder.BUILD.register(
+                builder -> {
+                    builder.registerPotionRecipe(Potions.AWKWARD, NetherAdditionsItems.ECTOCARP, NetherAdditionsPotions.LEVITATION_POTION);
+                    builder.registerPotionRecipe(NetherAdditionsPotions.LEVITATION_POTION, Items.REDSTONE, NetherAdditionsPotions.LONGER_LEVITATION_POTION);
+                }
+        );
     }
 }
