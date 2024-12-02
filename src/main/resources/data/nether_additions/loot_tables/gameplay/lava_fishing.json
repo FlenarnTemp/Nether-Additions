@@ -6,8 +6,8 @@
       "entries": [
         {
           "type": "minecraft:loot_table",
-          "name": "nether_additions:gameplay/lava_fishing/junk",
           "quality": -2,
+          "value": "nether_additions:gameplay/lava_fishing/junk",
           "weight": 12
         },
         {
@@ -18,20 +18,20 @@
               "entity": "this",
               "predicate": {
                 "type_specific": {
-                  "type": "fishing_hook",
+                  "type": "minecraft:fishing_hook",
                   "in_open_water": true
                 }
               }
             }
           ],
-          "name": "nether_additions:gameplay/lava_fishing/treasure",
           "quality": 2,
+          "value": "nether_additions:gameplay/lava_fishing/treasure",
           "weight": 8
         },
         {
           "type": "minecraft:loot_table",
-          "name": "nether_additions:gameplay/lava_fishing/fish",
           "quality": -1,
+          "value": "nether_additions:gameplay/lava_fishing/fish",
           "weight": 80
         }
       ],

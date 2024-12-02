@@ -33,9 +33,12 @@ public class NetherAdditions implements ModInitializer {
 		NetherAdditionsItemGroups.registerItemGroups();
 		NetherAdditionsParticles.registerParticles();
 		NetherAdditionsPotions.registerPotions();
-		NetherAdditionsPotions.registerPotionsRecipes();
 		NetherAdditionsLootTables.registerLootTables();
 		NetherAdditionsStatusEffects.registeringStatusEffects();
 		NetherAdditionsPaintings.registerPaintings();
+	}
+
+	public static Identifier getModId(String id){
+		return Identifier.of(MOD_ID, id);
 	}
 }

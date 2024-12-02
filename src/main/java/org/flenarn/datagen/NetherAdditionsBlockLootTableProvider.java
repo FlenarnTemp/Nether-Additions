@@ -3,11 +3,16 @@ package org.flenarn.datagen;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricBlockLootTableProvider;
 
+
+import net.minecraft.registry.RegistryWrapper;
 import org.flenarn.block.NetherAdditionsBlocks;
 
+import java.util.concurrent.CompletableFuture;
+
 public class NetherAdditionsBlockLootTableProvider extends FabricBlockLootTableProvider {
-    public NetherAdditionsBlockLootTableProvider(FabricDataOutput dataOutput) {
-        super(dataOutput);
+
+    public NetherAdditionsBlockLootTableProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
+        super(output, registriesFuture);
     }
 
     @Override

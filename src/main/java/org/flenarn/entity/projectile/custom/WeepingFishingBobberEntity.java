@@ -25,6 +25,7 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraft.world.dimension.DimensionTypes;
 
+import org.flenarn.NetherAdditions;
 import org.flenarn.entity.projectile.NetherAdditionsEntityTypes;
 import org.flenarn.item.NetherAdditionsItems;
 import org.flenarn.loot.NetherAdditionsLootTables;
@@ -69,6 +70,7 @@ public class WeepingFishingBobberEntity extends FishingBobberEntity {
     @Override
     public void tick() {
         this.velocityRandom.setSeed(this.getUuid().getLeastSignificantBits() ^ this.getWorld().getTime());
+
         PlayerEntity playerEntity = this.getPlayerOwner();
         if (playerEntity == null) {
             this.discard();
@@ -163,7 +165,7 @@ public class WeepingFishingBobberEntity extends FishingBobberEntity {
     }
 
     public final void tickLavaFishingLogic(BlockPos pos) {
-        if (this.getWorld().getDimensionKey() != DimensionTypes.THE_NETHER) {
+        if (!this.getWorld().getDimensionEntry().matchesKey(DimensionTypes.THE_NETHER)) {
             return;
         }
 
@@ -285,7 +287,7 @@ public class WeepingFishingBobberEntity extends FishingBobberEntity {
                 i = this.hookedEntity instanceof ItemEntity ? 3 : 5;
             } else if (this.hookCountdown > 0) {
                 LootContextParameterSet lootContextParameterSet = (new LootContextParameterSet.Builder((ServerWorld)this.getWorld())).add(LootContextParameters.ORIGIN, this.getPos()).add(LootContextParameters.TOOL, usedItem).add(LootContextParameters.THIS_ENTITY, this).luck((float)this.luckOfTheSeaLevel + playerEntity.getLuck()).build(LootContextTypes.FISHING);
-                LootTable lootTable = this.getWorld().getServer().getLootManager().getLootTable(NetherAdditionsLootTables.LAVA_FISHING_GAMEPLAY);
+                LootTable lootTable = this.getWorld().getServer().getReloadableRegistries().getLootTable(NetherAdditionsLootTables.LAVA_FISHING_GAMEPLAY);
                 List<ItemStack> list = lootTable.generateLoot(lootContextParameterSet);
                 Criteria.FISHING_ROD_HOOKED.trigger((ServerPlayerEntity)playerEntity, usedItem, this, list);
 

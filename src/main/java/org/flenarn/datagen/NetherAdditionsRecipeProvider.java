@@ -10,12 +10,15 @@ import net.minecraft.data.server.recipe.ShapelessRecipeJsonBuilder;
 import net.minecraft.item.Items;
 import net.minecraft.recipe.book.RecipeCategory;
 
+import net.minecraft.registry.RegistryWrapper;
 import org.flenarn.block.NetherAdditionsBlocks;
 import org.flenarn.item.NetherAdditionsItems;
 
+import java.util.concurrent.CompletableFuture;
+
 public class NetherAdditionsRecipeProvider extends FabricRecipeProvider {
-    public NetherAdditionsRecipeProvider(FabricDataOutput output) {
-        super(output);
+    public NetherAdditionsRecipeProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
+        super(output, registriesFuture);
     }
 
     @Override
