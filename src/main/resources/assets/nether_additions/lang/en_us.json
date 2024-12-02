@@ -24,5 +24,12 @@
   "item.minecraft.splash_potion.effect.levitation_potion": "Splash Potion of Levitation",
   "item.minecraft.splash_potion.effect.longer_levitation_potion": "Splash Potion of Levitation",
   "item.minecraft.lingering_potion.effect.levitation_potion": "Lingering Potion of Levitation",
-  "item.minecraft.lingering_potion.effect.longer_levitation_potion": "Lingering Potion of Levitation"
+  "item.minecraft.lingering_potion.effect.longer_levitation_potion": "Lingering Potion of Levitation",
+
+  "painting.nether_additions.pursuit.author": "Loscán",
+  "painting.nether_additions.pursuit.title": "Pursuit",
+  "painting.nether_additions.family_meeting.author": "Loscán",
+  "painting.nether_additions.family_meeting.title": "Family Meeting",
+  "painting.nether_additions.twisted_vines.author": "Loscán",
+  "painting.nether_additions.twisted_vines.title": "Twisted Vines"
 }

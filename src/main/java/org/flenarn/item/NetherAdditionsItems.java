@@ -11,12 +11,12 @@ import org.flenarn.item.custom.WeepingFishingRodItem;
 
 public class NetherAdditionsItems {
 
-    public static Item WEEPING_FISHING_ROD = registerItem("weeping_fishing_rod", new WeepingFishingRodItem(new Item.Settings().maxDamage(64)));
+    public static Item WEEPING_FISHING_ROD = registerItem("weeping_fishing_rod", new WeepingFishingRodItem(new Item.Settings().maxDamage(64).fireproof()));
 
-    public static Item PYROLITHID = registerItem("pyrolithid", new Item(new Item.Settings().food(NetherAdditionsFoodComponents.PYROLITHID)));
-    public static Item LAVACANTH = registerItem("lavacanth", new Item(new Item.Settings().food(NetherAdditionsFoodComponents.LAVACANTH)));
-    public static Item GOLDHEAD_WRASSE = registerItem("goldhead_wrasse", new Item(new Item.Settings().food(NetherAdditionsFoodComponents.GOLDHEAD_WRASSE)));
-    public static Item ECTOCARP = registerItem("ectocarp", new Item(new Item.Settings().food(NetherAdditionsFoodComponents.ECTOCARP)));
+    public static Item PYROLITHID = registerItem("pyrolithid", new Item(new Item.Settings().food(NetherAdditionsFoodComponents.PYROLITHID).fireproof()));
+    public static Item LAVACANTH = registerItem("lavacanth", new Item(new Item.Settings().food(NetherAdditionsFoodComponents.LAVACANTH).fireproof()));
+    public static Item GOLDHEAD_WRASSE = registerItem("goldhead_wrasse", new Item(new Item.Settings().food(NetherAdditionsFoodComponents.GOLDHEAD_WRASSE).fireproof()));
+    public static Item ECTOCARP = registerItem("ectocarp", new Item(new Item.Settings().food(NetherAdditionsFoodComponents.ECTOCARP).fireproof()));
     public static Item LITHID_SOUP = registerItem("lithid_soup", new StewItem(new Item.Settings().food(NetherAdditionsFoodComponents.LITHID_SOUP).maxCount(1)));
 
     private static Item registerItem(String name, Item item) {
