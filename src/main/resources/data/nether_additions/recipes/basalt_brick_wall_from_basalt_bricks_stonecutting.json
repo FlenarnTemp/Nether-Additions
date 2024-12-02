@@ -4,5 +4,7 @@
   "ingredient": {
     "item": "nether_additions:basalt_bricks"
   },
-  "result": "nether_additions:basalt_brick_wall"
+  "result": {
+    "id": "nether_additions:basalt_brick_wall"
+  }
 }

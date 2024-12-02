@@ -5,9 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "nether_additions:basalt_tiles"
-            ]
+            "items": "nether_additions:basalt_tiles"
           }
         ]
       },

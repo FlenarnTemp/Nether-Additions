@@ -4,5 +4,7 @@
   "ingredient": {
     "item": "nether_additions:basalt_bricks"
   },
-  "result": "nether_additions:chiseled_basalt"
+  "result": {
+    "id": "nether_additions:chiseled_basalt"
+  }
 }
