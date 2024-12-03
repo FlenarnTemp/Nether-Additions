@@ -5,7 +5,6 @@ import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
-import net.minecraft.util.Identifier;
 
 import org.flenarn.NetherAdditions;
 
@@ -23,12 +22,12 @@ public class NetherAdditionsBlocks {
 
     public static final Block CRACKED_BASALT_BRICKS = registerBlockWithItem("cracked_basalt_bricks", new Block(AbstractBlock.Settings.copy(Blocks.BASALT)));
     private static Item registerBlockItem(String name, Block block) {
-        return Registry.register(Registries.ITEM, Identifier.of(NetherAdditions.MOD_ID, name),
+        return Registry.register(Registries.ITEM, NetherAdditions.getModId(name),
                 new BlockItem(block, new Item.Settings()));
     }
 
     private static Block registerBlock(String name, Block block) {
-        return Registry.register(Registries.BLOCK, Identifier.of(NetherAdditions.MOD_ID, name), block);
+        return Registry.register(Registries.BLOCK, NetherAdditions.getModId(name), block);
     }
 
     public static Block registerBlockWithItem(String name, Block block) {

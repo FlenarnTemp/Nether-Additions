@@ -3,7 +3,6 @@ package org.flenarn.item;
 import net.minecraft.item.Item;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
-import net.minecraft.util.Identifier;
 
 import org.flenarn.NetherAdditions;
 import org.flenarn.item.custom.WeepingFishingRodItem;
@@ -19,7 +18,7 @@ public class NetherAdditionsItems {
     public static Item LITHID_SOUP = registerItem("lithid_soup", new Item(new Item.Settings().food(NetherAdditionsFoodComponents.LITHID_SOUP).maxCount(1)));
 
     private static Item registerItem(String name, Item item) {
-        return Registry.register(Registries.ITEM, Identifier.of(NetherAdditions.MOD_ID, name), item);
+        return Registry.register(Registries.ITEM, NetherAdditions.getModId(name), item);
     }
 
     public static void registerItems() {

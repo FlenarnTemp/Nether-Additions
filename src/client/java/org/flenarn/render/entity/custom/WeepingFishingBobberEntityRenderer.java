@@ -1,5 +1,8 @@
 package org.flenarn.render.entity.custom;
 
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
+
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.OverlayTexture;
 import net.minecraft.client.render.RenderLayer;
@@ -13,17 +16,15 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.Arm;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.RotationAxis;
 import net.minecraft.util.math.Vec3d;
 
+import org.flenarn.NetherAdditions;
 import org.flenarn.entity.projectile.custom.WeepingFishingBobberEntity;
 import org.flenarn.item.NetherAdditionsItems;
 
-import org.joml.Matrix3f;
-import org.joml.Matrix4f;
-
+@Environment(EnvType.CLIENT)
 public class WeepingFishingBobberEntityRenderer extends EntityRenderer<WeepingFishingBobberEntity> {
-    private static final Identifier TEXTURE = Identifier.of("nether_additions:textures/entity/weeping_fishing_hook.png");
+    private static final Identifier TEXTURE = NetherAdditions.getModId("textures/entity/weeping_fishing_hook.png");
     private static final RenderLayer LAYER;
 
     public WeepingFishingBobberEntityRenderer(EntityRendererFactory.Context context) {
@@ -37,7 +38,6 @@ public class WeepingFishingBobberEntityRenderer extends EntityRenderer<WeepingFi
             matrixStack.push();
             matrixStack.scale(0.5F, 0.5F, 0.5F);
             matrixStack.multiply(this.dispatcher.getRotation());
-            matrixStack.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(180.0F));
             MatrixStack.Entry entry = matrixStack.peek();
 
             VertexConsumer vertexConsumer = vertexConsumerProvider.getBuffer(LAYER);
@@ -103,7 +103,7 @@ public class WeepingFishingBobberEntityRenderer extends EntityRenderer<WeepingFi
     }
 
     private static void vertex(VertexConsumer buffer, MatrixStack.Entry matrix, int light, float x, int y, int u, int v) {
-        buffer.vertex(matrix, x - 0.5F, (float)y - 0.5F, 0.0F).color(255, 255, 255, 255).texture((float)u, (float)v).overlay(OverlayTexture.DEFAULT_UV).light(light).normal(matrix, 0.0F, 1.0F, 0.0F);
+        buffer.vertex(matrix, x - 0.5F, (float)y - 0.5F, 0.0F).color(-1).texture((float)u, (float)v).overlay(OverlayTexture.DEFAULT_UV).light(light).normal(matrix, 0.0F, 1.0F, 0.0F);
     }
 
     private static void renderFishingLine(float x, float y, float z, VertexConsumer buffer, MatrixStack.Entry matrices, float segmentStart, float segmentEnd) {

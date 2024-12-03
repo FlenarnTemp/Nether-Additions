@@ -3,7 +3,6 @@ package org.flenarn.mixin;
 import net.minecraft.entity.mob.PiglinBrain;
 import net.minecraft.item.ItemStack;
 
-import org.flenarn.NetherAdditions;
 import org.flenarn.item.NetherAdditionsItems;
 
 import org.spongepowered.asm.mixin.Mixin;

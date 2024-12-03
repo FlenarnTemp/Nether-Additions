@@ -9,7 +9,6 @@ import net.minecraft.potion.Potions;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.entry.RegistryEntry;
-import net.minecraft.util.Identifier;
 
 import org.flenarn.NetherAdditions;
 
@@ -22,7 +21,7 @@ public class NetherAdditionsPotions {
 
     public static RegistryEntry<Potion> register(String name, Potion potion)
     {
-        return Registry.registerReference(Registries.POTION, Identifier.of(NetherAdditions.MOD_ID, name), potion);
+        return Registry.registerReference(Registries.POTION, NetherAdditions.getModId(name), potion);
     }
 
     static {

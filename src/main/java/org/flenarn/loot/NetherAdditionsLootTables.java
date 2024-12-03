@@ -5,7 +5,6 @@ import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import org.flenarn.NetherAdditions;
 
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
