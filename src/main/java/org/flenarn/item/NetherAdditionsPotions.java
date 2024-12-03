@@ -25,8 +25,8 @@ public class NetherAdditionsPotions {
     }
 
     static {
-        LEVITATION_POTION = register("levitation_potion", new Potion(new StatusEffectInstance(StatusEffects.LEVITATION, 300, 0)));
-        LONGER_LEVITATION_POTION = register("longer_levitation_potion", new Potion(new StatusEffectInstance(StatusEffects.LEVITATION, 600, 0)));
+        LEVITATION_POTION = register("levitation", new Potion("levitation", new StatusEffectInstance(StatusEffects.LEVITATION, 300, 0)));
+        LONGER_LEVITATION_POTION = register("long_levitation", new Potion("levitation",new StatusEffectInstance(StatusEffects.LEVITATION, 600, 0)));
     }
 
     public static void registerPotions() {

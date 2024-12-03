@@ -4,15 +4,15 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.render.OverlayTexture;
-import net.minecraft.client.render.RenderLayer;
-import net.minecraft.client.render.VertexConsumer;
-import net.minecraft.client.render.VertexConsumerProvider;
+import net.minecraft.client.render.*;
 import net.minecraft.client.render.entity.EntityRenderer;
 import net.minecraft.client.render.entity.EntityRendererFactory;
+import net.minecraft.client.render.entity.state.FishingBobberEntityState;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.projectile.FishingBobberEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.util.Arm;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
@@ -21,9 +21,10 @@ import net.minecraft.util.math.Vec3d;
 import org.flenarn.NetherAdditions;
 import org.flenarn.entity.projectile.custom.WeepingFishingBobberEntity;
 import org.flenarn.item.NetherAdditionsItems;
+import org.flenarn.render.entity.state.WeepingFishingBobberEntityState;
 
 @Environment(EnvType.CLIENT)
-public class WeepingFishingBobberEntityRenderer extends EntityRenderer<WeepingFishingBobberEntity> {
+public class WeepingFishingBobberEntityRenderer extends EntityRenderer<WeepingFishingBobberEntity, WeepingFishingBobberEntityState> {
     private static final Identifier TEXTURE = NetherAdditions.getModId("textures/entity/weeping_fishing_hook.png");
     private static final RenderLayer LAYER;
 
@@ -31,70 +32,59 @@ public class WeepingFishingBobberEntityRenderer extends EntityRenderer<WeepingFi
         super(context);
     }
 
-    public void render(WeepingFishingBobberEntity weepingFishingBobberEntity, float f, float g, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int i) {
-        PlayerEntity playerEntity = weepingFishingBobberEntity.getPlayerOwner();
-        if (playerEntity != null) {
-            matrixStack.push();
-            matrixStack.push();
-            matrixStack.scale(0.5F, 0.5F, 0.5F);
-            matrixStack.multiply(this.dispatcher.getRotation());
-            MatrixStack.Entry entry = matrixStack.peek();
+    public boolean shouldRender(WeepingFishingBobberEntity weepingFishingBobberEntity, Frustum frustum, double d, double e, double f) {
+        return super.shouldRender(weepingFishingBobberEntity, frustum, d, e, f) && weepingFishingBobberEntity.getPlayerOwner() != null;
+    }
 
-            VertexConsumer vertexConsumer = vertexConsumerProvider.getBuffer(LAYER);
-            vertex(vertexConsumer, entry, i, 0.0F, 0, 0, 1);
-            vertex(vertexConsumer, entry, i, 1.0F, 0, 1, 1);
-            vertex(vertexConsumer, entry, i, 1.0F, 1, 1, 0);
-            vertex(vertexConsumer, entry, i, 0.0F, 1, 0, 0);
-            matrixStack.pop();
-            int mainArm = playerEntity.getMainArm() == Arm.RIGHT ? 1 : -1;
-            ItemStack itemStack = playerEntity.getMainHandStack();
-            if (!itemStack.isOf(NetherAdditionsItems.WEEPING_FISHING_ROD)) {
-                mainArm = -mainArm;
-            }
+    public void render(WeepingFishingBobberEntityState weepingFishingBobberEntityState, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int i) {
+        matrixStack.push();
+        matrixStack.push();
+        matrixStack.scale(0.5F, 0.5F, 0.5F);
+        matrixStack.multiply(this.dispatcher.getRotation());
+        MatrixStack.Entry entry = matrixStack.peek();
+        VertexConsumer vertexConsumer = vertexConsumerProvider.getBuffer(LAYER);
+        vertex(vertexConsumer, entry, i, 0.0F, 0, 0, 1);
+        vertex(vertexConsumer, entry, i, 1.0F, 0, 1, 1);
+        vertex(vertexConsumer, entry, i, 1.0F, 1, 1, 0);
+        vertex(vertexConsumer, entry, i, 0.0F, 1, 0, 0);
+        matrixStack.pop();
+        float f = (float) weepingFishingBobberEntityState.pos.x;
+        float g = (float) weepingFishingBobberEntityState.pos.y;
+        float h = (float) weepingFishingBobberEntityState.pos.z;
 
-            float swingHandProgress = playerEntity.getHandSwingProgress(g);
-            float k = MathHelper.sin(MathHelper.sqrt(swingHandProgress) * 3.1415927F);
-            float l = MathHelper.lerp(g, playerEntity.prevBodyYaw, playerEntity.bodyYaw) * 0.017453292F;
-            double d = MathHelper.sin(l);
-            double e = MathHelper.cos(l);
-            double m = (double) mainArm * 0.35;
-            double o;
-            double p;
-            double q;
-            float r;
-            double s;
-            if ((this.dispatcher.gameOptions == null || this.dispatcher.gameOptions.getPerspective().isFirstPerson()) && playerEntity == MinecraftClient.getInstance().player) {
-                s = 960.0 / (double) this.dispatcher.gameOptions.getFov().getValue();
-                Vec3d vec3d = this.dispatcher.camera.getProjection().getPosition((float) mainArm * 0.525F, -0.1F);
-                vec3d = vec3d.multiply(s);
-                vec3d = vec3d.rotateY(k * 0.5F);
-                vec3d = vec3d.rotateX(-k * 0.7F);
-                o = MathHelper.lerp(g, playerEntity.prevX, playerEntity.getX()) + vec3d.x;
-                p = MathHelper.lerp(g, playerEntity.prevY, playerEntity.getY()) + vec3d.y;
-                q = MathHelper.lerp(g, playerEntity.prevZ, playerEntity.getZ()) + vec3d.z;
-                r = playerEntity.getStandingEyeHeight();
-            } else {
-                o = MathHelper.lerp(g, playerEntity.prevX, playerEntity.getX()) - e * m - d * 0.8;
-                p = playerEntity.prevY + (double)playerEntity.getStandingEyeHeight() + (playerEntity.getY() - playerEntity.prevY) * (double)g - 0.45;
-                q = MathHelper.lerp(g, playerEntity.prevZ, playerEntity.getZ()) - d * m + e * 0.8;
-                r = playerEntity.isInSneakingPose() ? -0.1875F : 0.0F;
-            }
+        VertexConsumer vertexConsumer1 = vertexConsumerProvider.getBuffer(RenderLayer.getLineStrip());
+        MatrixStack.Entry entry1 = matrixStack.peek();
 
-            s = MathHelper.lerp(g, weepingFishingBobberEntity.prevX, weepingFishingBobberEntity.getX());
-            double t = MathHelper.lerp(g, weepingFishingBobberEntity.prevY, weepingFishingBobberEntity.getY()) + 0.25;
-            double u = MathHelper.lerp(g, weepingFishingBobberEntity.prevZ, weepingFishingBobberEntity.getZ());
-            float v = (float)(o - s);
-            float w = (float)(p - t) + r;
-            float x = (float)(q - u);
-            VertexConsumer vertexConsumer2 = vertexConsumerProvider.getBuffer(RenderLayer.getLineStrip());
-            MatrixStack.Entry entry2 = matrixStack.peek();
+        int j = 16;
 
-            for(int z = 0; z <= 16; ++z) {
-                renderFishingLine(v, w, x, vertexConsumer2, entry2, percentage(z, 16), percentage(z + 1, 16));
-            }
+        for (int k = 0; k < 6; ++k) {
+            renderFishingLine(f, g, h, vertexConsumer1, entry1, percentage(k, 16), percentage(k + 1, 16));
+        }
 
-            matrixStack.pop();
-            super.render(weepingFishingBobberEntity, f, g, matrixStack, vertexConsumerProvider, i);
+        matrixStack.pop();
+        super.render(weepingFishingBobberEntityState, matrixStack, vertexConsumerProvider, i);
+    }
+
+    private Vec3d getHandPos(PlayerEntity player, float f, float tickDelta) {
+        int i = player.getMainArm() == Arm.RIGHT ? 1 : -1;
+        ItemStack itemStack = player.getMainHandStack();
+        if (!itemStack.isOf(NetherAdditionsItems.WEEPING_FISHING_ROD)) {
+            i = -i;
+        }
+
+        if (this.dispatcher.gameOptions.getPerspective().isFirstPerson() && player == MinecraftClient.getInstance().player) {
+            double m = (double)960.0F / (double) this.dispatcher.gameOptions.getFov().getValue();
+            Vec3d vec3d = this.dispatcher.camera.getProjection().getPosition((float)i * 0.525F, -0.1F).multiply(m).rotateY(f * 0.5F).rotateX(-f * 0.7F);
+            return player.getCameraPosVec(tickDelta).add(vec3d);
+        } else {
+            float g = MathHelper.lerp(tickDelta, player.prevBodyYaw, player.bodyYaw) * ((float)Math.PI / 180F);
+            double d = MathHelper.sin(g);
+            double e = MathHelper.cos(g);
+            float h = player.getScale();
+            double j = (double)i * 0.35 * (double)h;
+            double k = 0.8 * (double)h;
+            float l = player.isInSneakingPose() ? -0.1875F : 0.0F;
+            return player.getCameraPosVec(tickDelta).add(-e * j - d * k, (double)l - 0.45 * (double)h, -d * j + e * k);
         }
     }
 
@@ -120,8 +110,12 @@ public class WeepingFishingBobberEntityRenderer extends EntityRenderer<WeepingFi
         buffer.vertex(matrices, f, g, h).color(0, 0, 0, 255).normal(matrices, i, j, k);
     }
 
-    public Identifier getTexture(WeepingFishingBobberEntity weepingFishingBobberEntity) {
-        return TEXTURE;
+    public WeepingFishingBobberEntityState createRenderState() {
+        return new WeepingFishingBobberEntityState();
+    }
+
+    protected boolean canBeCulled(WeepingFishingBobberEntity weepingFishingBobberEntity) {
+        return false;
     }
 
     static {

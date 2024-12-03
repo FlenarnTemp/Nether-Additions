@@ -3,14 +3,15 @@ package org.flenarn.item.custom;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.projectile.ProjectileEntity;
 import net.minecraft.item.FishingRodItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.stat.Stats;
+import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
-import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
 import net.minecraft.world.event.GameEvent;
 
@@ -22,7 +23,7 @@ public class WeepingFishingRodItem extends FishingRodItem  {
     }
 
     @Override
-    public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
+    public ActionResult use(World world, PlayerEntity user, Hand hand) {
         ItemStack itemStack = user.getStackInHand(hand);
         if (user.fishHook != null) {
             if (!world.isClient) {
@@ -38,13 +39,13 @@ public class WeepingFishingRodItem extends FishingRodItem  {
                 ServerWorld serverWorld = (ServerWorld) world;
                 int i = (int) (EnchantmentHelper.getFishingTimeReduction(serverWorld, itemStack, user) * 20.0F);
                 int j = EnchantmentHelper.getFishingLuckBonus(serverWorld, itemStack, user);
-                world.spawnEntity(new WeepingFishingBobberEntity(user, world, j, i));
+                ProjectileEntity.spawn(new WeepingFishingBobberEntity(user, world, j, i, itemStack), serverWorld, itemStack);
             }
 
             user.incrementStat(Stats.USED.getOrCreateStat(this));
             user.emitGameEvent(GameEvent.ITEM_INTERACT_START);
         }
 
-        return TypedActionResult.success(itemStack, world.isClient());
+        return ActionResult.SUCCESS;
     }
 }

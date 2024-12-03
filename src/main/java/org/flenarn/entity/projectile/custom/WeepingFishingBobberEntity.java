@@ -9,9 +9,9 @@ import net.minecraft.entity.projectile.FishingBobberEntity;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.item.ItemStack;
 import net.minecraft.loot.LootTable;
-import net.minecraft.loot.context.LootContextParameterSet;
 import net.minecraft.loot.context.LootContextParameters;
 import net.minecraft.loot.context.LootContextTypes;
+import net.minecraft.loot.context.LootWorldContext;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.registry.tag.FluidTags;
 import net.minecraft.registry.tag.ItemTags;
@@ -40,7 +40,7 @@ public class WeepingFishingBobberEntity extends FishingBobberEntity {
         super(type, world, luckBonus, waitTimeReductionTicks);
     }
 
-    public WeepingFishingBobberEntity(PlayerEntity thrower, World world, int luckBonus, int waitTimeReductionTicks) {
+    public WeepingFishingBobberEntity(PlayerEntity thrower, World world, int luckBonus, int waitTimeReductionTicks, ItemStack itemStack) {
         this(NetherAdditionsEntityTypes.WEEPING_FISHING_BOBBER_ENTITY_TYPE, world, luckBonus, waitTimeReductionTicks);
         this.setOwner(thrower);
         float thrownPitch = thrower.getPitch();
@@ -281,7 +281,7 @@ public class WeepingFishingBobberEntity extends FishingBobberEntity {
                 i = this.hookedEntity instanceof ItemEntity ? 3 : 5;
             } else if (this.hookCountdown > 0) {
                 FishingBobberEntityMixin fishingBobberEntityMixin = (FishingBobberEntityMixin)this;
-                LootContextParameterSet lootContextParameterSet = (new LootContextParameterSet.Builder((ServerWorld)this.getWorld())).add(LootContextParameters.ORIGIN, this.getPos()).add(LootContextParameters.TOOL, usedItem).add(LootContextParameters.THIS_ENTITY, this).luck((float)fishingBobberEntityMixin.getLuckBonus() + playerEntity.getLuck()).build(LootContextTypes.FISHING);
+                LootWorldContext lootContextParameterSet = (new LootWorldContext.Builder((ServerWorld)this.getWorld())).add(LootContextParameters.ORIGIN, this.getPos()).add(LootContextParameters.TOOL, usedItem).add(LootContextParameters.THIS_ENTITY, this).luck((float)fishingBobberEntityMixin.getLuckBonus() + playerEntity.getLuck()).build(LootContextTypes.FISHING);
                 LootTable lootTable = this.getWorld().getServer().getReloadableRegistries().getLootTable(NetherAdditionsLootTables.LAVA_FISHING_GAMEPLAY);
                 List<ItemStack> list = lootTable.generateLoot(lootContextParameterSet);
                 Criteria.FISHING_ROD_HOOKED.trigger((ServerPlayerEntity)playerEntity, usedItem, this, list);

@@ -5,7 +5,8 @@
 	"name": "Nether Additions",
 	"description": "Nether Additions is a mod meant to subtly expand on the Nether, in a vanilla friendly style.",
 	"authors": [
-		"Me!"
+		"Flenarn",
+		"Loscàn"
 	],
 	"contact": {
 		"homepage": "https://modrinth.com/project/nether-additions",
@@ -34,7 +35,7 @@
 	],
 	"depends": {
 		"fabricloader": ">=0.15.7",
-		"minecraft": ">=1.20.5",
+		"minecraft": ">=1.21 <=1.21.1",
 		"java": ">=21",
 		"fabric-api": "*"
 	},

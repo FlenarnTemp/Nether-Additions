@@ -5,6 +5,7 @@ import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 
 import net.minecraft.block.Blocks;
 import net.minecraft.data.server.recipe.RecipeExporter;
+import net.minecraft.data.server.recipe.RecipeGenerator;
 import net.minecraft.data.server.recipe.ShapedRecipeJsonBuilder;
 import net.minecraft.data.server.recipe.ShapelessRecipeJsonBuilder;
 import net.minecraft.item.Items;
@@ -16,13 +17,26 @@ import org.flenarn.item.NetherAdditionsItems;
 
 import java.util.concurrent.CompletableFuture;
 
+import static net.minecraft.data.server.recipe.RecipeGenerator.hasItem;
+
 public class NetherAdditionsRecipeProvider extends FabricRecipeProvider {
     public NetherAdditionsRecipeProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
         super(output, registriesFuture);
     }
 
     @Override
-    public void generate(RecipeExporter exporter) {
+    protected RecipeGenerator getRecipeGenerator(RegistryWrapper.WrapperLookup registries, RecipeExporter exporter) {
+        return new RecipeGenerator(registries, exporter) {
+            @Override
+            public void generate(Consumer<RecipeJsonProvider>) {
+                ShapedRecipeJsonBuilder.create()
+            }
+        }
+    }
+
+
+    @Override
+    protected RecipeGenerator getRecipeGenerator(RecipeExporter exporter) {
         ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, NetherAdditionsItems.WEEPING_FISHING_ROD, 1)
                 .pattern("  G")
                 .pattern(" SW")

@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(PiglinBrain.class)
 public class PiglinBrainMixin {
-	@Inject(at = @At("HEAD"), method = "acceptsForBarter", cancellable = true)
+	@Inject(at = @At("RETURN"), method = "acceptsForBarter", cancellable = true)
 	private static void NetherAdditionsAcceptsForBarter(ItemStack stack, CallbackInfoReturnable<Boolean> cir) {
 		if (stack.isOf(NetherAdditionsItems.GOLDHEAD_WRASSE)) {
 			cir.setReturnValue(true);
