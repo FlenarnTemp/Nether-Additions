@@ -1,5 +1,13 @@
 {
   "asset_id": "nether_additions:twisted_vines",
+  "author": {
+    "color": "gray",
+    "translate": "painting.nether_additions.twisted_vines.author"
+  },
   "height": 2,
+  "title": {
+    "color": "yellow",
+    "translate": "painting.nether_additions.twisted_vines.title"
+  },
   "width": 1
 }

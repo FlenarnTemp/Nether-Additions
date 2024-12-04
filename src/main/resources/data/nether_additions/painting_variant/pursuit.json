@@ -1,5 +1,13 @@
 {
   "asset_id": "nether_additions:pursuit",
+  "author": {
+    "color": "gray",
+    "translate": "painting.nether_additions.pursuit.author"
+  },
   "height": 2,
+  "title": {
+    "color": "yellow",
+    "translate": "painting.nether_additions.pursuit.title"
+  },
   "width": 3
 }

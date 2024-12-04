@@ -2,18 +2,10 @@
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
   "ingredients": [
-    {
-      "item": "nether_additions:pyrolithid"
-    },
-    {
-      "item": "minecraft:bowl"
-    },
-    {
-      "item": "minecraft:warped_fungus"
-    },
-    {
-      "item": "minecraft:nether_wart"
-    }
+    "nether_additions:pyrolithid",
+    "minecraft:bowl",
+    "minecraft:warped_fungus",
+    "minecraft:nether_wart"
   ],
   "result": {
     "count": 1,

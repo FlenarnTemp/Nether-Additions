@@ -2,9 +2,7 @@
   "type": "minecraft:crafting_shaped",
   "category": "building",
   "key": {
-    "S": {
-      "item": "nether_additions:basalt_bricks"
-    }
+    "S": "nether_additions:basalt_bricks"
   },
   "pattern": [
     "SS",

@@ -2,15 +2,9 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "G": {
-      "item": "minecraft:gold_ingot"
-    },
-    "S": {
-      "item": "minecraft:stick"
-    },
-    "W": {
-      "item": "minecraft:weeping_vines"
-    }
+    "G": "minecraft:gold_ingot",
+    "S": "minecraft:stick",
+    "W": "minecraft:weeping_vines"
   },
   "pattern": [
     "  G",

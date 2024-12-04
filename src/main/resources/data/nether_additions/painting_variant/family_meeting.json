@@ -1,5 +1,13 @@
 {
   "asset_id": "nether_additions:family_meeting",
+  "author": {
+    "color": "gray",
+    "translate": "painting.nether_additions.family_meeting.author"
+  },
   "height": 2,
+  "title": {
+    "color": "yellow",
+    "translate": "painting.nether_additions.family_meeting.title"
+  },
   "width": 2
 }

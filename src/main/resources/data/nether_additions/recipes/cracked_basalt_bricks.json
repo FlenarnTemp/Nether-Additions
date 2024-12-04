@@ -3,9 +3,7 @@
   "category": "blocks",
   "cookingtime": 200,
   "experience": 0.1,
-  "ingredient": {
-    "item": "nether_additions:basalt_bricks"
-  },
+  "ingredient": "nether_additions:basalt_bricks",
   "result": {
     "id": "nether_additions:cracked_basalt_bricks"
   }

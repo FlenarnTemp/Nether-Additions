@@ -1,10 +1,8 @@
 {
   "type": "minecraft:stonecutting",
-  "count": 1,
-  "ingredient": {
-    "item": "minecraft:smooth_basalt"
-  },
+  "ingredient": "minecraft:smooth_basalt",
   "result": {
+    "count": 1,
     "id": "nether_additions:chiseled_basalt"
   }
 }
