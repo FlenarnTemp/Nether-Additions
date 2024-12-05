@@ -4,10 +4,10 @@ import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 
 import net.minecraft.block.Blocks;
-import net.minecraft.data.server.recipe.RecipeExporter;
-import net.minecraft.data.server.recipe.RecipeGenerator;
-import net.minecraft.data.server.recipe.ShapedRecipeJsonBuilder;
-import net.minecraft.data.server.recipe.ShapelessRecipeJsonBuilder;
+import net.minecraft.data.recipe.RecipeExporter;
+import net.minecraft.data.recipe.RecipeGenerator;
+import net.minecraft.data.recipe.ShapedRecipeJsonBuilder;
+import net.minecraft.data.recipe.ShapelessRecipeJsonBuilder;
 import net.minecraft.item.Items;
 import net.minecraft.recipe.book.RecipeCategory;
 import net.minecraft.registry.RegistryKeys;
@@ -29,16 +29,6 @@ public class NetherAdditionsRecipeProvider extends FabricRecipeProvider {
             @Override
             public void generate() {
                 var itemWrap = registryLookup.getOrThrow(RegistryKeys.ITEM);
-
-                ShapedRecipeJsonBuilder.create(itemWrap, RecipeCategory.MISC, NetherAdditionsItems.WEEPING_FISHING_ROD, 1)
-                        .pattern("  G")
-                        .pattern(" SW")
-                        .pattern("S W")
-                        .input('S', Items.STICK)
-                        .input('G', Items.GOLD_INGOT)
-                        .input('W', Items.WEEPING_VINES)
-                        .criterion(hasItem(Items.WEEPING_VINES), conditionsFromItem(Items.WEEPING_VINES))
-                        .offerTo(exporter);
 
                 ShapedRecipeJsonBuilder.create(itemWrap, RecipeCategory.MISC, NetherAdditionsItems.WEEPING_FISHING_ROD, 1)
                         .pattern("  G")

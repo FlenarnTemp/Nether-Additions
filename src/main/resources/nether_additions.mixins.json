@@ -5,7 +5,6 @@
   "mixins": [
     "HoglinSpecificSensorMixin",
     "PiglinBrainMixin",
-    "FishingBobberEntityMixin"
   ],
   "injectors": {
     "defaultRequire": 1

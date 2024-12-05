@@ -28,7 +28,6 @@ import net.minecraft.world.dimension.DimensionTypes;
 import org.flenarn.entity.projectile.NetherAdditionsEntityTypes;
 import org.flenarn.item.NetherAdditionsItems;
 import org.flenarn.loot.NetherAdditionsLootTables;
-import org.flenarn.mixin.FishingBobberEntityMixin;
 import org.flenarn.particle.NetherAdditionsParticles;
 
 import java.util.Collections;
@@ -249,9 +248,7 @@ public class WeepingFishingBobberEntity extends FishingBobberEntity {
             }
         } else {
             this.waitCountdown = MathHelper.nextInt(this.random, 100, 600);
-
-            FishingBobberEntityMixin fishingBobberEntityMixin = (FishingBobberEntityMixin) this;
-            this.waitCountdown -= fishingBobberEntityMixin.getLuckBonus() * 20 * 5;
+            this.waitCountdown -= this.luckBonus * 20 * 5;
         }
 
     }
@@ -280,8 +277,7 @@ public class WeepingFishingBobberEntity extends FishingBobberEntity {
                 this.getWorld().sendEntityStatus(this, (byte) 31);
                 i = this.hookedEntity instanceof ItemEntity ? 3 : 5;
             } else if (this.hookCountdown > 0) {
-                FishingBobberEntityMixin fishingBobberEntityMixin = (FishingBobberEntityMixin)this;
-                LootWorldContext lootContextParameterSet = (new LootWorldContext.Builder((ServerWorld)this.getWorld())).add(LootContextParameters.ORIGIN, this.getPos()).add(LootContextParameters.TOOL, usedItem).add(LootContextParameters.THIS_ENTITY, this).luck((float)fishingBobberEntityMixin.getLuckBonus() + playerEntity.getLuck()).build(LootContextTypes.FISHING);
+                LootWorldContext lootContextParameterSet = (new LootWorldContext.Builder((ServerWorld)this.getWorld())).add(LootContextParameters.ORIGIN, this.getPos()).add(LootContextParameters.TOOL, usedItem).add(LootContextParameters.THIS_ENTITY, this).luck((float)this.luckBonus + playerEntity.getLuck()).build(LootContextTypes.FISHING);
                 LootTable lootTable = this.getWorld().getServer().getReloadableRegistries().getLootTable(NetherAdditionsLootTables.LAVA_FISHING_GAMEPLAY);
                 List<ItemStack> list = lootTable.generateLoot(lootContextParameterSet);
                 Criteria.FISHING_ROD_HOOKED.trigger((ServerPlayerEntity)playerEntity, usedItem, this, list);

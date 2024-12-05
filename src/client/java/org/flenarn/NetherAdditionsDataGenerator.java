@@ -2,11 +2,9 @@ package org.flenarn;
 
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
-import org.flenarn.datagen.NetherAdditionsBlockTagProvider;
-import org.flenarn.datagen.NetherAdditionsItemTagProvider;
-import org.flenarn.datagen.NetherAdditionsModelProvider;
-import org.flenarn.datagen.NetherAdditionsRecipeProvider;
-import org.flenarn.datagen.NetherAdditionsBlockLootTableProvider;
+
+
+import org.flenarn.datagen.*;
 
 public class NetherAdditionsDataGenerator implements DataGeneratorEntrypoint {
 	@Override
