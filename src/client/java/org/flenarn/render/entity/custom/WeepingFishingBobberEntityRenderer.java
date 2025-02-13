@@ -74,7 +74,7 @@ public class WeepingFishingBobberEntityRenderer extends EntityRenderer<WeepingFi
             Vec3d vec3d = this.dispatcher.camera.getProjection().getPosition((float)i * 0.525F, -0.1F).multiply(m).rotateY(f * 0.5F).rotateX(-f * 0.7F);
             return player.getCameraPosVec(tickDelta).add(vec3d);
         } else {
-            float g = MathHelper.lerp(tickDelta, player.prevBodyYaw, player.bodyYaw) * 0.017453292F;
+            float g = MathHelper.lerp(tickDelta, player.lastBodyYaw, player.bodyYaw) * 0.017453292F;
             double d = MathHelper.sin(g);
             double e = MathHelper.cos(g);
             float h = player.getScale();
