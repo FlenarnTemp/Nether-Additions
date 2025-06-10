@@ -17,10 +17,10 @@ public class NetherAdditionsBlockTagProvider extends FabricTagProvider.BlockTagP
 
     @Override
     protected void configure(RegistryWrapper.WrapperLookup arg) {
-        getOrCreateTagBuilder(BlockTags.WALLS)
+        valueLookupBuilder(BlockTags.WALLS)
                 .add(NetherAdditionsBlocks.BASALT_BRICK_WALL);
 
-        getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE)
+        valueLookupBuilder(BlockTags.PICKAXE_MINEABLE)
                 .add(NetherAdditionsBlocks.BASALT_BRICK_WALL)
                 .add(NetherAdditionsBlocks.BASALT_BRICK_STAIRS)
                 .add(NetherAdditionsBlocks.BASALT_BRICK_SLAB)

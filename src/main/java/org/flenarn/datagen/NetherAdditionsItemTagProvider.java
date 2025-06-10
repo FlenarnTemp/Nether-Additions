@@ -17,10 +17,10 @@ public class NetherAdditionsItemTagProvider extends FabricTagProvider.ItemTagPro
 
     @Override
     protected void configure(RegistryWrapper.WrapperLookup arg) {
-        getOrCreateTagBuilder(ItemTags.PIGLIN_LOVED)
+        valueLookupBuilder(ItemTags.PIGLIN_LOVED)
                 .add(NetherAdditionsItems.GOLDHEAD_WRASSE);
 
-        getOrCreateTagBuilder(ItemTags.FISHES)
+        valueLookupBuilder(ItemTags.FISHES)
                 .add(NetherAdditionsItems.GOLDHEAD_WRASSE)
                 .add(NetherAdditionsItems.ECTOCARP)
                 .add(NetherAdditionsItems.PYROLITHID)
