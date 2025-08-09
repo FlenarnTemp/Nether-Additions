@@ -27,4 +27,8 @@ public class NetherAdditionsEntityTypes {
 
         return Registry.register(Registries.ENTITY_TYPE, key, entityTypeBuilder.build(key));
     }
+
+    public static void registerEntities() {
+        NetherAdditions.LOGGER.info("Registering entity types for " + NetherAdditions.MOD_ID + ".");
+    }
 }
