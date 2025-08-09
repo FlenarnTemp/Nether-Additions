@@ -39,7 +39,7 @@ public class WeepingFishingBobberEntity extends FishingBobberEntity {
         super(type, world, luckBonus, waitTimeReductionTicks);
     }
 
-    public WeepingFishingBobberEntity(PlayerEntity thrower, World world, int luckBonus, int waitTimeReductionTicks, ItemStack itemStack) {
+    public WeepingFishingBobberEntity(PlayerEntity thrower, World world, int luckBonus, int waitTimeReductionTicks) {
         this(NetherAdditionsEntityTypes.WEEPING_FISHING_BOBBER_ENTITY_TYPE, world, luckBonus, waitTimeReductionTicks);
         this.setOwner(thrower);
         float thrownPitch = thrower.getPitch();
@@ -277,9 +277,9 @@ public class WeepingFishingBobberEntity extends FishingBobberEntity {
                 this.getWorld().sendEntityStatus(this, (byte) 31);
                 i = this.hookedEntity instanceof ItemEntity ? 3 : 5;
             } else if (this.hookCountdown > 0) {
-                LootWorldContext lootContextParameterSet = (new LootWorldContext.Builder((ServerWorld)this.getWorld())).add(LootContextParameters.ORIGIN, this.getPos()).add(LootContextParameters.TOOL, usedItem).add(LootContextParameters.THIS_ENTITY, this).luck((float)this.luckBonus + playerEntity.getLuck()).build(LootContextTypes.FISHING);
+                LootWorldContext lootWorldContext = (new LootWorldContext.Builder((ServerWorld)this.getWorld())).add(LootContextParameters.ORIGIN, this.getPos()).add(LootContextParameters.TOOL, usedItem).add(LootContextParameters.THIS_ENTITY, this).luck((float)this.luckBonus + playerEntity.getLuck()).build(LootContextTypes.FISHING);
                 LootTable lootTable = this.getWorld().getServer().getReloadableRegistries().getLootTable(NetherAdditionsLootTables.LAVA_FISHING_GAMEPLAY);
-                List<ItemStack> list = lootTable.generateLoot(lootContextParameterSet);
+                List<ItemStack> list = lootTable.generateLoot(lootWorldContext);
                 Criteria.FISHING_ROD_HOOKED.trigger((ServerPlayerEntity)playerEntity, usedItem, this, list);
 
                 for (ItemStack itemStack : list) {

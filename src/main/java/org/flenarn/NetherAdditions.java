@@ -5,6 +5,7 @@ import net.fabricmc.api.ModInitializer;
 import net.minecraft.util.Identifier;
 import org.flenarn.block.NetherAdditionsBlocks;
 import org.flenarn.entity.effect.NetherAdditionsStatusEffects;
+import org.flenarn.entity.projectile.NetherAdditionsEntityTypes;
 import org.flenarn.item.NetherAdditionsItemGroups;
 import org.flenarn.item.NetherAdditionsItems;
 import org.flenarn.item.NetherAdditionsPotions;
@@ -28,6 +29,7 @@ public class NetherAdditions implements ModInitializer {
 		NetherAdditionsPotions.registerPotionRecipes();
 		NetherAdditionsLootTables.registerLootTables();
 		NetherAdditionsStatusEffects.registeringStatusEffects();
+		NetherAdditionsEntityTypes.registerEntities();
 	}
 
 	public static Identifier getModId(String id){

@@ -39,7 +39,7 @@ public class WeepingFishingRodItem extends FishingRodItem  {
                 ServerWorld serverWorld = (ServerWorld) world;
                 int i = (int) (EnchantmentHelper.getFishingTimeReduction(serverWorld, itemStack, user) * 20.0F);
                 int j = EnchantmentHelper.getFishingLuckBonus(serverWorld, itemStack, user);
-                ProjectileEntity.spawn(new WeepingFishingBobberEntity(user, world, j, i, itemStack), serverWorld, itemStack);
+                ProjectileEntity.spawn(new WeepingFishingBobberEntity(user, world, j, i), serverWorld, itemStack);
             }
 
             user.incrementStat(Stats.USED.getOrCreateStat(this));
