@@ -1,0 +1,30 @@
+{
+  "itemgroup.NetherAdditions": "Nether Additions",
+
+  "item.nether_additions.lavacanth": "Лавоокунь",
+  "item.nether_additions.ectocarp": "Ектокарп",
+  "item.nether_additions.goldhead_wrasse": "Золотоголова губань",
+  "item.nether_additions.pyrolithid": "Піролітид",
+  "item.nether_additions.weeping_fishing_rod": "Плакуча вудка",
+  "item.nether_additions.lithid_soup": "Тушкований піролітид",
+
+  "block.nether_additions.chiseled_basalt": "Різьблений базальт",
+  "block.nether_additions.basalt_bricks": "Базальтова цегла",
+  "block.nether_additions.basalt_brick_stairs": "Сходи з базальтової цегли",
+  "block.nether_additions.basalt_brick_wall": "Стіна з базальтової цегли",
+  "block.nether_additions.basalt_brick_slab": "Плита з базальтової цегли",
+  "block.nether_additions.cracked_basalt_bricks": "Тріснута базальтова цегла",
+  "block.nether_additions.basalt_tiles": "Базальтові кахлі",
+  "block.nether_additions.basalt_tiles_slab": "Плита з базальтових кахлів",
+
+  "effect.nether_additions.fungal_aroma": "Химерний запах",
+
+  "item.minecraft.potion.effect.levitation_potion": "Зілля левітації",
+  "item.minecraft.potion.effect.longer_levitation_potion": "Зілля левітації",
+  "item.minecraft.splash_potion.effect.levitation_potion": "Вибухове зілля левітації",
+  "item.minecraft.splash_potion.effect.longer_levitation_potion": "Вибухове зілля левітації",
+  "item.minecraft.lingering_potion.effect.levitation_potion": "Осідальне зілля левітації",
+  "item.minecraft.lingering_potion.effect.longer_levitation_potion": "Осідальне зілля левітації",
+  
+  "modmenu.descriptionTranslation.nether_additions": "Nether Additions — це мод, призначений для тонкого розширення Nether у дружньому стилі."
+}
